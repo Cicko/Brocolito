@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+  <script type="text/javascript" src="./main.js"></script> 
+  <style>
+    body {
+      padding: 0px;
+      margin: 0px;
+      background: black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- setup facebook integration -->
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '268786056817416',
+        xfbml      : true,
+        version    : 'v2.6'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+  <!-- Setup Firebase integration -->
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBRKj708Aho24LwmhZo-OUfTUWhmZH0HQ8",
+    authDomain: "brocolito-ac046.firebaseapp.com",
+    databaseURL: "https://brocolito-ac046.firebaseio.com",
+    storageBucket: "",
+  };
+  firebase.initializeApp(config);
+</script>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80323205-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  <img src="http://hitwebcounter.com/counter/counter.php?page=6435731&style=0035&nbdigits=5&type=page&initCount=0" title="" Alt=""   border="0" >
+
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-height="200"
+  data-show-faces="true">
+</div>
+
+</body>
+</html>
