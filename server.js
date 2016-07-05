@@ -14,7 +14,7 @@ const expressLayouts = require('express-ejs-layouts');
 //const db = new sqlite3.Database(databaseFile);
 //var exists = fs.existsSync(databaseFile);
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 8080));
 
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'ejs');
