@@ -1,0 +1,23 @@
+{
+  "name": "brocolito",
+  "version": "1.0.0",
+  "description": "It's a happy broccoli that wants to live for ever.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://cicko@bitbucket.org/cicko/brocolito.git"
+  },
+  "keywords": [
+    "broccoli",
+    "game",
+    "fast",
+    "reaction",
+    "points"
+  ],
+  "author": "Rudolf Cicko",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/cicko/brocolito#readme"
+}
