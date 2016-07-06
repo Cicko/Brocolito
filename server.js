@@ -9,8 +9,9 @@ const expressLayouts = require('express-ejs-layouts');
 
 var pg = require('pg');
 
+// process.env.DATABASE_URL
 pg.defaults.ssl = true;
-pg.connect(process.env.DATABASE_URL, function(err, client) {
+pg.connect("postgres://abqhujoqqkupbh:F26u-9T3marAzsj_qFVTX5vtuw@ec2-54-243-249-159.compute-1.amazonaws.com:5432/dtmcit1m6lmem", function(err, client) {
   if (err) throw err;
   console.log('Connected to postgres! Getting schemas...');
 
@@ -20,7 +21,6 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
       console.log(JSON.stringify(row));
     });
 });
-
 //const databaseFile = "db/database.db";
 //const sqlite3 = require("sqlite3").verbose();
 //const db = new sqlite3.Database(databaseFile);
