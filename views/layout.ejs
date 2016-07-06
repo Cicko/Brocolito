@@ -2,8 +2,8 @@
 <html>
 
 <head>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
-  <script type="text/javascript" src="./main.js"></script> 
+  <script type="text/javascript" src="js/phaser.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
   <style>
     body {
       padding: 0px;
@@ -11,9 +11,6 @@
       background: black;
     }
   </style>
-</head>
-
-<body>
 
   <!-- setup facebook integration -->
   <script>
@@ -60,8 +57,12 @@
 
 </script>
 
+</head>
+
+<body>
 
   <img src="http://hitwebcounter.com/counter/counter.php?page=6435731&style=0035&nbdigits=5&type=page&initCount=0" title="" Alt=""   border="0" >
+  <font color="white"> <%- points %> </font>
 
 <div
   class="fb-like"
@@ -70,6 +71,8 @@
   data-height="200"
   data-show-faces="true">
 </div>
+
+  <%- body %>
 
 </body>
 </html>

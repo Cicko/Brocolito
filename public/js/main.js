@@ -20,27 +20,27 @@ var timer;
 
 
 var coin;
-var coinSize = 45
+var coinSize = 45;
 
 
 
 var score = 10;
-var scoreIncrement = 10
+var scoreIncrement = 10;
 
 
 var lost = true;
 
 // Texts
 
-var gameOverText = "Game Over... score: "
-var brocoliMotivationText = "You are a happy broccoli, don't let them eat you!!"
-var scoreText
+var gameOverText = "Game Over... score: ";
+var brocoliMotivationText = "You are a happy broccoli, don't let them eat you!!";
+var scoreText;
 
 
 function preload() {
-    game.load.image('arrow', './images/brocolito.png');
-    game.load.image('mouth', './images/mouth1.png');
-    game.load.image('coin', './images/coin.png');
+    game.load.image('arrow', 'images/brocolito.png');
+    game.load.image('mouth', 'images/mouth1.png');
+    game.load.image('coin', 'images/coin.png');
 }
 
 function create() {
@@ -113,8 +113,8 @@ function create() {
 function createCoin () {
     coin = game.add.sprite(game.world.randomX * 0.9, game.world.randomY * 0.9, 'coin');
     game.physics.enable(coin, Phaser.Physics.ARCADE);
-    coin.width = coinSize
-    coin.height = coinSize
+    coin.width = coinSize;
+    coin.height = coinSize;
     scoreText.setText("Actual score: " + score + " points.");
 
 }
@@ -129,9 +129,9 @@ function enemyCollision (obj1, obj2) {
 
 
 function coinCollision (obj1, obj2) {
-  score += scoreIncrement
-  coin.destroy()
-  createCoin()
+  score += scoreIncrement;
+  coin.destroy();
+  createCoin();
 }
 
 function pauseGame () {
