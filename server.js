@@ -7,7 +7,19 @@ const path = require('path');
 const fs = require("fs");
 const expressLayouts = require('express-ejs-layouts');
 
+var pg = require('pg');
 
+pg.defaults.ssl = true;
+pg.connect(process.env.DATABASE_URL, function(err, client) {
+  if (err) throw err;
+  console.log('Connected to postgres! Getting schemas...');
+
+  client
+    .query('SELECT * FROM users;')
+    .on('row', function(row) {
+      console.log(JSON.stringify(row));
+    });
+});
 
 //const databaseFile = "db/database.db";
 //const sqlite3 = require("sqlite3").verbose();
