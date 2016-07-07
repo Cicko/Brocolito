@@ -15,5 +15,22 @@
 <a href="/start"><button type="button" class="btn btn-transparent"> Start </button></a>
 
 
-<!-- <div class="output" id="scoresTable"> </div> -->
-<%- table %>
+<div class="container">
+  <h2>Best Scores</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Points</th>
+        <th>UserName</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% _.each(rows, (row) => { %>
+      <tr>
+        <td><%=row.maxpoints%></td>
+        <td><%=row.username%></td>
+      </tr>
+    <% }); %>
+    </tbody>
+  </table>
+</div>
