@@ -29,7 +29,7 @@ app.get('/', (request, response) => {
   pg.connect(DATABASE_URL, function(err, client, done) {
     if (err) throw err;
     console.log('Connected to postgres! Getting schemas...');
-    client.query('SELECT * FROM users ORDER BY maxpoints DESC;', function (err, result) {
+    client.query('SELECT * FROM users ORDER BY maxpoints DESC limit 4;', function (err, result) {
       done();
       if (err) {
         console.error(err); response.send("Error " + err);
@@ -44,6 +44,10 @@ app.get('/', (request, response) => {
 app.get('/start', (request, response) => {
   console.log("PEPE");
   response.render ('game', {title: "Brocolito"});
+});
+
+app.get('gameOver', (request, response) => {
+
 });
 
 app.listen(app.get('port'), () => {

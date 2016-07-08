@@ -1,0 +1,40 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,900);
+
+body {
+    padding: 0px;
+    margin: 0px;
+    background: #00aa00;
+}
+
+* , h1, h2 {
+  font-family: 'Raleway', sans-serif;
+}
+
+#scoresContainer {
+  border-radius: 10px;
+  margin-left: 100px;
+  position: absolute;
+}
+
+#scoresTitle {
+  margin-top: 20px;
+}
+
+#brocolitoImage {
+  transform: rotate(45deg);
+  width:304px;
+  height:228px;
+  margin-top: 500px;
+}
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+  background-color: green;
+}
+
+th {
+  }
+
+td {
+}
