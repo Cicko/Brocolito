@@ -64,7 +64,7 @@ Leaderboard
 .leaderboard h1 {
   font-size: 18px;
   color: #000000;
-  padding: 12px 13px 18px;
+  padding: 12px 13px 8px;
   text-align: center;
 }
 .leaderboard h1 svg {
