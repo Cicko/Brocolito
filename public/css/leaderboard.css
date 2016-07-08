@@ -9,6 +9,27 @@ Body
   box-sizing: border-box;
 }
 
+@font-face {
+    font-family: Brewsky;
+    src: url(fonts/Brewsky.ttf);
+}
+
+@font-face {
+    font-family: GOODDP;
+    src: url(fonts/GOODDP.TTF);
+}
+
+#brocolitoTitle {
+  font-family: GOODDP;
+  font-size: 170px;
+  transform: rotateZ(40deg);
+  padding-top: 200px;
+  padding-left: 100px;
+  color: black;
+  position: fixed;
+  margin: auto;
+}
+
 body {
   min-height: 450px;
   height: 100vh;
