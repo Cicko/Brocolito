@@ -42,9 +42,66 @@ body {
 
 #brocolitoImage {
   transform: rotate(45deg);
-  position: absolute;
+  position: fixed;
   left: 45%;
 }
+
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:300);
+
+.cta {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  font-size: 30px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%) translateY(150px);
+}
+
+.star-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+}
+
+.star:hover {
+  animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  animation: wobble 600ms 1;
+}
+
+@keyframes wobble {
+  0% {
+    transform: scaleX(1) scaleY(1) rotate(45deg);
+  }
+  06.25% {
+    transform: scaleX(1.2) scaleY(0.8) rotate(45deg);
+  }
+  18.75% {
+    transform: scaleX(0.8) scaleY(1.2) rotate(45deg);
+  }
+  31.25% {
+    transform: scaleX(1.1) scaleY(0.9) rotate(45deg);
+  }
+  43.75% {
+    transform: scaleX(0.9) scaleY(1.1) rotate(45deg);
+  }
+  62.50% {
+    transform: scaleX(1.05) scaleY(0.95) rotate(45deg);
+  }
+  81.25% {
+    transform: scaleX(0.95) scaleY(1.05) rotate(45deg);
+  }
+  100% {
+    transform: scaleX(1) scaleY(1) rotate(45deg);
+  }
+}
+
 
 /*--------------------
 Leaderboard
@@ -52,11 +109,12 @@ Leaderboard
 .leaderboard {
   position: absolute;
   opacity: 0.98;
+  border: 2px solid black;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 285px;
-  height: 297px;
+  height: 317px;
   background: linear-gradient(to bottom, #0dad41, #086425);
   border-radius: 10px;
   box-shadow: 0 7px 30px rgba(62, 9, 11, 0.3);
@@ -79,6 +137,7 @@ Leaderboard
 }
 .leaderboard ol li {
   position: relative;
+  border: 1px solid black;
   z-index: 1;
   font-size: 18px;
   counter-increment: leaderboard;
