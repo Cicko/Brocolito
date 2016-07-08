@@ -19,8 +19,8 @@ var textReflect = null;
 var timer;
 
 
-var coin;
-var coinSize = 45;
+var branch;
+var branchSize = 65;
 
 
 
@@ -41,9 +41,9 @@ console.log("GAMELOGIC CARGADO");
 
 
 function preload() {
-    game.load.image('arrow', 'images/brocolito.png');
+    game.load.image('arrow', 'images/brocolito2.png');
     game.load.image('mouth', 'images/mouth1.png');
-    game.load.image('coin', 'images/coin.png');
+    game.load.image('branch', 'images/rama.png');
 }
 
 function create() {
@@ -60,8 +60,8 @@ function create() {
 
      //  Set a TimerEvent to occur after n milisecs.
 
-     //timer.loop(coinCreatingInterval, createCoin, this);
-     createCoin();
+     //timer.loop(branchCreatingInterval, createbranch, this);
+     createbranch();
 
      //  Start the timer running - this is important!
      //  It won't start automatically, allowing you to hook it to button events and the like.
@@ -73,7 +73,7 @@ function create() {
      playerPosition.x = mouthOriginX;
      playerPosition.y = mouthOriginY;
 
-     game.stage.backgroundColor = '#00aa00';
+     game.stage.backgroundColor = '#12e355';
   //  game.physics.arcade.gravity.y = 200;
 
     sprite = game.add.sprite(500, 350, 'arrow');
@@ -113,17 +113,17 @@ function create() {
 }
 
 
-function createCoin () {
-    coin = game.add.sprite(game.world.randomX * 0.9, game.world.randomY * 0.9, 'coin');
-    game.physics.enable(coin, Phaser.Physics.ARCADE);
-    coin.width = coinSize;
-    coin.height = coinSize;
+function createbranch () {
+    branch = game.add.sprite(game.world.randomX * 0.9, game.world.randomY * 0.9, 'branch');
+    game.physics.enable(branch, Phaser.Physics.ARCADE);
+    branch.width = branchSize * 1.2;
+    branch.height = branchSize;
     scoreText.setText("Actual score: " + score + " points.");
 
 }
 
 function enemyCollision (obj1, obj2) {
-    game.stage.backgroundColor = '#ff0000';
+    game.stage.backgroundColor = '#016000';
     drawText ();
 
     game.time.events.add(Phaser.Timer.SECOND * DELAY_PAUSE_GAME, pauseGame, this);
@@ -131,10 +131,10 @@ function enemyCollision (obj1, obj2) {
 }
 
 
-function coinCollision (obj1, obj2) {
+function branchCollision (obj1, obj2) {
   score += scoreIncrement;
-  coin.destroy();
-  createCoin();
+  branch.destroy();
+  createbranch();
 }
 
 function pauseGame () {
@@ -172,7 +172,7 @@ function update() {
   //mouth.rotation = game.physics.arcade.moveToXY(mouth, playerPosition.x, playerPosition.y, mouthDelay, mouthSpeed);
 
   game.physics.arcade.collide(sprite, mouth, enemyCollision, null, this);
-  game.physics.arcade.collide(sprite, coin, coinCollision, null, this);
+  game.physics.arcade.collide(sprite, branch, branchCollision, null, this);
 
 }
 
