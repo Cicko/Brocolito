@@ -31,7 +31,7 @@ var lost = true;
 
 // Texts
 
-var gameOverText = "Game Over\n score: ";
+var gameOverText = "Game Over\n Score: ";
 var brocoliMotivationText = "You are a happy broccoli, don't let them eat you!!";
 var scoreText;
 
@@ -60,16 +60,35 @@ function preload() {
 
     fontLoaded = game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
     game.load.bitmapFont('font', 'css/fonts/GOODDP.TTF');
+
+  //  game.load.audio('brocolitoMusic', 'sounds/brocolitoMusic.mp3');
+}
+
+
+function createText() {
+  var motivationText = game.add.text(game.world.width * 0.4, game.world.height * 0.05, brocoliMotivationText);
+
+  if (!scoreText) {
+    scoreText = game.add.text(game.world.width * 0.05, game.world.height * 0.05, "Score: 0");
+  }
+
+  motivationText.font = 'Revalia';
+  scoreText.font = 'Revalia';
+
 }
 
 function create() {
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
+    if(!scoreText) {
+      scoreText = game.add.text(game.world.width * 0.05, game.world.height * 0.05, "Score: 0");
+    }
+
+    //game.sound.play('brocolitoMusic');
 
 
     // Texts
-    game.add.text(game.world.width * 0.5, game.world.height * 0.05, brocoliMotivationText);
-    scoreText = game.add.text(game.world.width * 0.05, game.world.height * 0.05, "");
+
 
     //  Create our Timer
     // timer = game.time.create(false);
@@ -131,6 +150,7 @@ function createbranch () {
     branch.width = branchSize * 1.2;
     branch.height = branchSize;
     scoreText.setText("Score: " + score);
+    scoreText.font = 'Revalia';
 }
 
 function enemyCollision (obj1, obj2) {
@@ -156,7 +176,7 @@ function pauseGame () {
 function drawText () {
     if (lost) {
       lost = false;
-      text = game.add.text(game.world.centerX, game.world.centerY, gameOverText + score + " points.");
+      text = game.add.text(game.world.centerX, game.world.centerY, gameOverText + score);
       text.font = "Revalia";
 
     //  Centers the text
@@ -165,9 +185,10 @@ function drawText () {
 
     //  Our font + size
       text.fontWeight = 'bold';
-      text.stroke= "blue";
+      text.stroke= "#07530a";
       text.fontSize = 50;
       text.fill = '#000000';
+      text.strokeThickness = 10;
 
   }
 
