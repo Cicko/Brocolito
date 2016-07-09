@@ -98,7 +98,7 @@ function create() {
 
     var size = 90;
 
-    sprite.width = size * 1.3;
+    sprite.width = size;
     sprite.height = size;
 
     mouth.width = size;

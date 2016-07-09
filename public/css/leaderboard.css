@@ -23,7 +23,7 @@ Body
   font-family: GOODDP;
   font-size: 170px;
   /*transform: rotateZ(40deg); */
-  padding-top: 20px;  
+  padding-top: 20px;
   padding-left: 80px;
   color: black;
   position: fixed;
@@ -42,7 +42,7 @@ body {
 
 #brocolitoImage {
   position: fixed;
-  left: 45%;
+  left: 52%;
 }
 
 
