@@ -17,6 +17,8 @@ var mouthStartDelay = 4.7;
 var mouthDelayText;
 const MOUTH_DELAY_DECREMENT = 0.05;
 var mouthPlatform;
+var platformRadius = 64;
+var randomPos;
 
 var mouthOriginX = 200;
 var mouthOriginY = 200;
@@ -92,7 +94,7 @@ function createText() {
 
 function create() {
 
-    mouthPlatform = new Phaser.Circle(game.world.centerX, 100,64);
+
     mouthPrepared = false;
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -172,13 +174,21 @@ function branchCollision (obj1, obj2) {
   score += scoreIncrement;
   branch.destroy();
   createbranch();
+  if ((score + 10) % 50 == 0) {
+    randomPos = new Phaser.Point();
+    randomPos.x = game.world.randomX * 0.8;
+    randomPos.y = game.world.randomY * 0.8;
+    mouthPlatform = new Phaser.Circle(randomPos.x, randomPos.y,platformRadius);
+
+  }
   if (score % 50 == 0) {
     createNewEnemy();
+    mouthPlatform = null;
   }
 }
 
 function createNewEnemy () {
-    var m = game.add.sprite(game.world.width * 0.05, game.world.height * 0.95, 'mouth');
+    var m = game.add.sprite(randomPos.x, randomPos.y, 'mouth');
 
     m.width = size * 3;
     m.height = size;
@@ -259,4 +269,16 @@ function update() {
 
 function render() {
   //  game.debug.spriteInfo(sprite, 32, 32);
+  game.debug.geom(mouthPlatform,'#006000');
+
 }
+
+$(document).ready(function() {
+
+
+  $("#gameOver").click (() => {
+    console.log("Entrando en Game Over  ");
+    $.get("/start");
+  });
+
+});
