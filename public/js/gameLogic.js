@@ -1,11 +1,18 @@
 
 const DELAY_PAUSE_GAME = 0.3;
+const DELAY_CREATING_ENEMY = 2;
 var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 var sprite;
 
 var mouth;
 // Mouth (enemy) initial position
+
+var mouthPrepared;
+var mouthStartDelay = 4.7;
+var mouthDelayText;
+const MOUTH_DELAY_DECREMENT = 0.05;
+
 var mouthOriginX = 200;
 var mouthOriginY = 200;
 
@@ -35,8 +42,6 @@ var gameOverText = "Game Over\n Score: ";
 var brocoliMotivationText = "You are a happy broccoli, don't let them eat you!!";
 var scoreText;
 
-var fontLoaded;
-
 
 WebFontConfig = {
 
@@ -58,7 +63,7 @@ function preload() {
     game.load.image('mouth', 'images/mouth1.png');
     game.load.image('branch', 'images/rama.png');
 
-    fontLoaded = game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
     game.load.bitmapFont('font', 'css/fonts/GOODDP.TTF');
 
   //  game.load.audio('brocolitoMusic', 'sounds/brocolitoMusic.mp3');
@@ -67,6 +72,7 @@ function preload() {
 
 function createText() {
   var motivationText = game.add.text(game.world.width * 0.4, game.world.height * 0.05, brocoliMotivationText);
+  motivationText.fontSize = 20;
 
   if (!scoreText) {
     scoreText = game.add.text(game.world.width * 0.05, game.world.height * 0.05, "Score: 0");
@@ -79,11 +85,14 @@ function createText() {
 
 function create() {
 
+    mouthPrepared = false;
+
     game.physics.startSystem(Phaser.Physics.ARCADE);
     if(!scoreText) {
       scoreText = game.add.text(game.world.width * 0.05, game.world.height * 0.05, "Score: 0");
     }
 
+    mouthDelayText = game.add.text(game.world.centerX, game.world.centerY, "Start in " + mouthStartDelay.toFixed(2));
     //game.sound.play('brocolitoMusic');
 
 
@@ -115,6 +124,7 @@ function create() {
 
     mouth = game.add.sprite(200, 150, 'mouth');
 
+
     var size = 90;
 
     sprite.width = size;
@@ -140,9 +150,7 @@ function create() {
     sprite.body.collideWorldBounds = true;
     mouth.body.collideWorldBounds = true;
 
-
 }
-
 
 function createbranch () {
     branch = game.add.sprite(game.world.randomX * 0.9, game.world.randomY * 0.9, 'branch');
@@ -190,16 +198,28 @@ function drawText () {
       text.fill = '#000000';
       text.strokeThickness = 10;
 
-  }
-
-
+    }
 }
 
+
+function decrementStartTime () {
+  mouthStartDelay -= MOUTH_DELAY_DECREMENT;
+  if (mouthStartDelay <= 0.1) mouthPrepared = true;
+  return mouthStartDelay;
+}
+
+
 function update() {
-  sprite.rotation = game.physics.arcade.moveToPointer(sprite, 60, game.input.activePointer, 100);
 
   // just move without rotation.
-  game.physics.arcade.moveToXY(mouth, sprite.x, sprite.y, mouthDelay, mouthSpeed);
+  if (mouthPrepared) {
+    sprite.rotation = game.physics.arcade.moveToPointer(sprite, 60, game.input.activePointer, 100);
+    game.physics.arcade.moveToXY(mouth, sprite.x, sprite.y, mouthDelay, mouthSpeed);
+    mouthDelayText.destroy();
+  }
+  else {
+    mouthDelayText.setText ("Start in " + decrementStartTime().toFixed(2));
+  }
 
   // move with rotation.
   //mouth.rotation = game.physics.arcade.moveToXY(mouth, playerPosition.x, playerPosition.y, mouthDelay, mouthSpeed);
