@@ -5,13 +5,18 @@ var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS,
 
 var sprite;
 
+
+
+var size;
 var mouth;
+var mouths;
 // Mouth (enemy) initial position
 
 var mouthPrepared;
 var mouthStartDelay = 4.7;
 var mouthDelayText;
 const MOUTH_DELAY_DECREMENT = 0.05;
+var mouthPlatform;
 
 var mouthOriginX = 200;
 var mouthOriginY = 200;
@@ -60,7 +65,9 @@ WebFontConfig = {
 
 function preload() {
     game.load.image('arrow', 'images/brocolito2.png');
-    game.load.image('mouth', 'images/mouth1.png');
+    //game.load.image('mouth', 'images/mouth.png');
+
+    game.load.spritesheet('mouth', 'images/mouthSheet.png', 400, 100, 55);
     game.load.image('branch', 'images/rama.png');
 
     game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
@@ -85,6 +92,7 @@ function createText() {
 
 function create() {
 
+    mouthPlatform = new Phaser.Circle(game.world.centerX, 100,64);
     mouthPrepared = false;
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -93,24 +101,8 @@ function create() {
     }
 
     mouthDelayText = game.add.text(game.world.centerX, game.world.centerY, "Start in " + mouthStartDelay.toFixed(2));
-    //game.sound.play('brocolitoMusic');
 
-
-    // Texts
-
-
-    //  Create our Timer
-    // timer = game.time.create(false);
-
-     //  Set a TimerEvent to occur after n milisecs.
-
-     //timer.loop(branchCreatingInterval, createbranch, this);
      createbranch();
-
-     //  Start the timer running - this is important!
-     //  It won't start automatically, allowing you to hook it to button events and the like.
-     //timer.start();
-
 
      playerPosition = new Phaser.Point();
 
@@ -122,15 +114,18 @@ function create() {
 
     sprite = game.add.sprite(500, 350, 'arrow');
 
-    mouth = game.add.sprite(200, 150, 'mouth');
+    mouth = game.add.sprite(game.world.width * 0.05, game.world.height * 0.95, 'mouth');
 
+    var bite = mouth.animations.add('bite');
 
-    var size = 90;
+    mouth.animations.play('bite', 30, true);
+
+    size = 90;
 
     sprite.width = size;
     sprite.height = size;
 
-    mouth.width = size;
+    mouth.width = size * 3;
     mouth.height = size;
 
     sprite.anchor.setTo(0.5, 0.5);
@@ -143,6 +138,8 @@ function create() {
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     game.physics.enable(mouth, Phaser.Physics.ARCADE);
 
+    mouth.body.setSize(70,100,120,0);
+
     //  Tell it we don't want physics to manage the rotation
     sprite.body.allowRotation = true;
     mouth.body.allowRotation = true;
@@ -150,6 +147,7 @@ function create() {
     sprite.body.collideWorldBounds = true;
     mouth.body.collideWorldBounds = true;
 
+    mouths = new Array(mouth);
 }
 
 function createbranch () {
@@ -174,6 +172,26 @@ function branchCollision (obj1, obj2) {
   score += scoreIncrement;
   branch.destroy();
   createbranch();
+  if (score % 50 == 0) {
+    createNewEnemy();
+  }
+}
+
+function createNewEnemy () {
+    var m = game.add.sprite(game.world.width * 0.05, game.world.height * 0.95, 'mouth');
+
+    m.width = size * 3;
+    m.height = size;
+    game.physics.enable(m, Phaser.Physics.ARCADE);
+
+    var bite = m.animations.add('bite');
+
+    m.animations.play('bite', 30, true);
+
+    m.body.setSize(70,100,120,0);
+    m.body.allowRotation = true;
+    m.body.collideWorldBounds = true;
+    mouths.push(m);
 }
 
 function pauseGame () {
@@ -212,9 +230,11 @@ function decrementStartTime () {
 function update() {
 
   // just move without rotation.
+  sprite.rotation = game.physics.arcade.moveToPointer(sprite, 60, game.input.activePointer, 100);
   if (mouthPrepared) {
-    sprite.rotation = game.physics.arcade.moveToPointer(sprite, 60, game.input.activePointer, 100);
-    game.physics.arcade.moveToXY(mouth, sprite.x, sprite.y, mouthDelay, mouthSpeed);
+    for (var i = 0; i < mouths.length; i++) {
+      game.physics.arcade.moveToXY(mouths[i], sprite.x, sprite.y, mouthDelay, mouthSpeed);
+    }
     mouthDelayText.destroy();
   }
   else {
@@ -224,7 +244,15 @@ function update() {
   // move with rotation.
   //mouth.rotation = game.physics.arcade.moveToXY(mouth, playerPosition.x, playerPosition.y, mouthDelay, mouthSpeed);
 
-  game.physics.arcade.collide(sprite, mouth, enemyCollision, null, this);
+
+  for (var i = 0; i < mouths.length-1; i++) {
+    game.physics.arcade.collide (mouths[i], mouths[i+1]);
+  }
+
+  for (var i = 0;i < mouths.length; i++) {
+    game.physics.arcade.collide (sprite, mouths[i], enemyCollision, null, this);
+  }
+
   game.physics.arcade.collide(sprite, branch, branchCollision, null, this);
 
 }
