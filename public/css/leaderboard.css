@@ -22,8 +22,8 @@ Body
 #brocolitoTitle {
   font-family: GOODDP;
   font-size: 170px;
-  transform: rotateZ(40deg);
-  padding-top: 200px;
+  /*transform: rotateZ(40deg); */
+  padding-top: 20px;  
   padding-left: 80px;
   color: black;
   position: fixed;
@@ -85,7 +85,6 @@ Leaderboard
   font-size: 18px;
   counter-increment: leaderboard;
   padding: 18px 10px 18px 50px;
-  cursor: pointer;
   backface-visibility: hidden;
   transform: translateZ(0) scale(1, 1);
 }
@@ -103,6 +102,7 @@ Leaderboard
   border-radius: 20px;
   text-align: center;
 }
+
 .leaderboard ol li mark {
   position: absolute;
   z-index: 2;
@@ -115,6 +115,7 @@ Leaderboard
   background: none;
   color: #000;
 }
+
 .leaderboard ol li mark::before, .leaderboard ol li mark::after {
   content: '';
   position: absolute;
@@ -126,12 +127,14 @@ Leaderboard
   transition: all .1s ease-in-out;
   opacity: 0;
 }
+
 .leaderboard ol li mark::after {
   left: auto;
   right: -9px;
   border-left: none;
   border-right: 10px solid transparent;
 }
+
 .leaderboard ol li small {
   position: relative;
   z-index: 2;
@@ -140,6 +143,7 @@ Leaderboard
   font-size: 18px;
   color: black;
 }
+/*
 .leaderboard ol li::after {
   content: '';
   position: absolute;
@@ -153,9 +157,11 @@ Leaderboard
   transition: all .3s ease-in-out;
   opacity: 0;
 }
+*/
 .leaderboard ol li:nth-child(1) {
   background: #12e355;
 }
+
 .leaderboard ol li:nth-child(1)::after {
   background: #10d14e;
 }
@@ -211,10 +217,13 @@ Leaderboard
   border-top: none;
   border-bottom: 8px solid #993639;
 }
+
 .leaderboard ol li:hover {
   z-index: 2;
   overflow: visible;
+  transform: scaleX(1.05) scaleY(1.05);
 }
+/*
 .leaderboard ol li:hover::after {
   opacity: 1;
   transform: scaleX(1.06) scaleY(1.03);
@@ -223,3 +232,4 @@ Leaderboard
   opacity: 1;
   transition: all .35s ease-in-out;
 }
+*/

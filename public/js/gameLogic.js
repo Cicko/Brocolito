@@ -4,7 +4,6 @@ var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS,
 
 var sprite;
 
-
 var mouth;
 // Mouth (enemy) initial position
 var mouthOriginX = 200;
@@ -24,7 +23,7 @@ var branchSize = 65;
 
 
 
-var score = 10;
+var score = 0;
 var scoreIncrement = 10;
 
 
@@ -32,18 +31,35 @@ var lost = true;
 
 // Texts
 
-var gameOverText = "Game Over... score: ";
+var gameOverText = "Game Over\n score: ";
 var brocoliMotivationText = "You are a happy broccoli, don't let them eat you!!";
 var scoreText;
 
+var fontLoaded;
 
-console.log("GAMELOGIC CARGADO");
+
+WebFontConfig = {
+
+    //  'active' means all requested fonts have finished loading
+    //  We set a 1 second delay before calling 'createText'.
+    //  For some reason if we don't the browser cannot render the text the first time it's created.
+    active: function() { game.time.events.add(Phaser.Timer.SECOND, createText, this); },
+
+    //  The Google Fonts we want to load (specify as many as you like in the array)
+    google: {
+      families: ['Revalia']
+    }
+
+};
 
 
 function preload() {
     game.load.image('arrow', 'images/brocolito2.png');
     game.load.image('mouth', 'images/mouth1.png');
     game.load.image('branch', 'images/rama.png');
+
+    fontLoaded = game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+    game.load.bitmapFont('font', 'css/fonts/GOODDP.TTF');
 }
 
 function create() {
@@ -53,7 +69,7 @@ function create() {
 
     // Texts
     game.add.text(game.world.width * 0.5, game.world.height * 0.05, brocoliMotivationText);
-    scoreText = game.add.text(game.world.width * 0.05, game.world.height * 0.05, "Actual score: " + score + " points.")
+    scoreText = game.add.text(game.world.width * 0.05, game.world.height * 0.05, "");
 
     //  Create our Timer
     // timer = game.time.create(false);
@@ -105,10 +121,6 @@ function create() {
     sprite.body.collideWorldBounds = true;
     mouth.body.collideWorldBounds = true;
 
-// WALLS
-    //var wall1 = new Phaser.Physics.Box2D.Body(this.game, null, 655, 230, 0);
-    //wall1.setRectangle(20, 50, 0, 0, 0);
-    //wall1.static = true;
 
 }
 
@@ -118,8 +130,7 @@ function createbranch () {
     game.physics.enable(branch, Phaser.Physics.ARCADE);
     branch.width = branchSize * 1.2;
     branch.height = branchSize;
-    scoreText.setText("Actual score: " + score + " points.");
-
+    scoreText.setText("Score: " + score);
 }
 
 function enemyCollision (obj1, obj2) {
@@ -146,16 +157,17 @@ function drawText () {
     if (lost) {
       lost = false;
       text = game.add.text(game.world.centerX, game.world.centerY, gameOverText + score + " points.");
+      text.font = "Revalia";
 
     //  Centers the text
       text.anchor.set(0.5);
       text.align = 'center';
 
     //  Our font + size
-      text.font = 'Arial';
       text.fontWeight = 'bold';
-      text.fontSize = 70;
-      text.fill = '#ffffff';
+      text.stroke= "blue";
+      text.fontSize = 50;
+      text.fill = '#000000';
 
   }
 
