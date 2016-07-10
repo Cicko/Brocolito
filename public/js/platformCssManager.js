@@ -32,8 +32,6 @@ $(document).ready(function () {
      // ads
      $('.ads').css("display","none");
 
-
-
      // Visitors counter
      $('#visitsCounter').css("display","none");
     }
