@@ -53,14 +53,6 @@ body {
   bottom: 15%;
 }
 
-@media only screen and (max-device-width: 1081px) {
-  body {
-    background-color: blue;
-  }
-  .ads {
-    visibility: hidden;
-  }
-}
 
 
 /*--------------------
