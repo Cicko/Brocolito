@@ -52,12 +52,6 @@ $(document).ready(function () {
      $('#brocolitoImage').css("left", "52%");
 
 
-     // TV
-     $('#tvImage').css("position","absolute");
-     $('#tvImage').css("width","101%");
-     $('#tvImage').css("height","121%");
-     $('#tvImage').css("z-index","1");
-
 
     }
 });
