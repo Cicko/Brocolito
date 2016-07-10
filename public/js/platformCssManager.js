@@ -9,8 +9,9 @@ $(document).ready(function () {
    || navigator.userAgent.match(/Windows Phone/i)
    ){
      $('.leaderboard').css("width", "80%");
+     $('.ads').css("display","none");
     }
    else {
-     
+     $('.leaderboard').css("width", "20%");
     }
 });
