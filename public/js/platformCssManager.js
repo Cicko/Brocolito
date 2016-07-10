@@ -8,7 +8,7 @@ $(document).ready(function () {
    || navigator.userAgent.match(/BlackBerry/i)
    || navigator.userAgent.match(/Windows Phone/i)
    ){
-     $('.leaderboard').css("width", "80%");
+     $('.leaderboard').css("width", "60%");
      $('.ads').css("display","none");
     }
    else {
