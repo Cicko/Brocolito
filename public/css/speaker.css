@@ -18,10 +18,9 @@
   cursor: pointer;
   display: block;
   position: absolute;
-  top: 5%;
-  right: 5%;
   display: block;
 }
 
 .speakerplay {
   background-position: 0 0;
+}

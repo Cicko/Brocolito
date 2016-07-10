@@ -21,7 +21,6 @@ Body
 
 #brocolitoTitle {
   font-family: GOODDP;
-  font-size: 170px;
   /*transform: rotateZ(40deg); */
   padding-top: 20px;
   padding-left: 80px;
@@ -42,7 +41,6 @@ body {
 
 #brocolitoImage {
   position: fixed;
-  left: 52%;
 }
 
 
@@ -210,21 +208,6 @@ Leaderboard
   bottom: auto;
   border-top: none;
   border-bottom: 6px solid #000000;
-}
-.leaderboard ol li:nth-child(5) {
-  background: #c24448;
-  border-radius: 0 0 10px 10px;
-}
-.leaderboard ol li:nth-child(5)::after {
-  background: #c24448;
-  box-shadow: 0 -2.5px 0 rgba(0, 0, 0, 0.12);
-  border-radius: 0 0 10px 10px;
-}
-.leaderboard ol li:nth-child(5) mark::before, .leaderboard ol li:nth-child(5) mark::after {
-  top: -9px;
-  bottom: auto;
-  border-top: none;
-  border-bottom: 8px solid #993639;
 }
 
 .leaderboard ol li:hover {

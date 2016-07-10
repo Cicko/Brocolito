@@ -8,10 +8,56 @@ $(document).ready(function () {
    || navigator.userAgent.match(/BlackBerry/i)
    || navigator.userAgent.match(/Windows Phone/i)
    ){
+     // Brocolito title
+     $('#brocolitoTitle').css("font-size", 60);
+     $('#brocolitoTitle').css("left", "-20%");
+
+     // Brocolito image
+     $('#brocolitoImage').css("width", "60%");
+     $('#brocolitoImage').css("height", "40%");
+     $('#brocolitoImage').css("right", "-27%");
+
+     // speaker
+     $('speaker').css("left", "10%");
+     $('speaker').css("bottom", "10%");
+
+
+
+     // leaderboard
      $('.leaderboard').css("width", "60%");
+     $('.leaderboard').css("height", "56.5%");
+
+     $('.leaderboard ol li').css("font-size", 14);
+
+     // ads
      $('.ads').css("display","none");
+
+
+
+     // Visitors counter
+     $('#visitsCounter').css("display","none");
     }
    else {
+     $('#brocolitoTitle').css("font-size", 170);
+
+
+     // speaker
+     $('speaker').css("top", "5%");
+     $('speaker').css("right", "5%");
+
+     // Leaderboard
      $('.leaderboard').css("width", "20%");
+
+     // Brocolito image
+     $('#brocolitoImage').css("left", "52%");
+
+
+     // TV
+     $('#tvImage').css("position","absolute");
+     $('#tvImage').css("width","101%");
+     $('#tvImage').css("height","121%");
+     $('#tvImage').css("z-index","1");
+
+
     }
 });
