@@ -8,6 +8,9 @@
 <body>
 
 <h2> <center> CONGRATULATIONS !!! <br>You made <h1> <%= highscore %> points !!! </h1>  <br> Introduce your username to save your highscore: </center> </h2>
+<br> <% if (error != "none") { %>
+    <h3><%= error %></h3>
+<% } %>
 <!--<input type="text" id="userName" name="userName"> -->
 <!-- <a href="/saveNewHighscore"><button type="button" id="saveHighscoreButton"> Save </button></a> -->
 

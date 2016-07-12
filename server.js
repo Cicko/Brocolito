@@ -89,7 +89,7 @@ app.post('/gameOver', (request, response) => {
         console.log("Score better: " + score);
       //  var query2 = client.query("DELETE FROM usuarios WHERE maxpoints = $1;",[lowestBestPoints]);
 
-        response.render ('newScore', { title: "Brocolito", highscore: score });
+        response.render ('newScore', { title: "Brocolito", highscore: score, error: "none" });
 /*
         query2.on ('end', function() {
           done();
@@ -117,17 +117,40 @@ app.post('/saveNewHighscore', (request, response) => {
   pg.connect(DATABASE_URL, function(err, client, done) {
     if (err) throw err;
     console.log('Connected to postgres! Getting schemas...');
-    var query = "INSERT INTO usuarios VALUES ('" + request.body.userName + "', " + request.body.highscore + ");";
-    console.log("Query is: " + query);
-    client.query(query, function (err, result) {
-      if (err) {
-        console.error(err); response.send("Error " + err);
-      }
-      else {
-        response.redirect("/");
-        //response.render ('index', {title: "Brocolito", rows: highscores.rows, _: _});
-      }
+
+    // Check if userExists
+    var checkingQuery = "select count(*) from usuarios where username='" + request.body.userName + "';";
+    client.query(checkingQuery, function (err, result) {
+        if (err) {
+          console.error(err); response.send("Error " + err);
+        }
+        else {
+          if (result.rows[0].count > 0) {
+            console.log("UserName: " + request.body.userName + " already exists..");
+            response.render ('newScore', {
+              title: "Brocolito",
+              highscore: request.body.highscore,
+              error: request.body.userName + " already exists. Put another."
+            });
+          }
+          else {
+            var query = "INSERT INTO usuarios VALUES ('" + request.body.userName + "', " + request.body.highscore + ");";
+            console.log("Query is: " + query);
+            client.query(query, function (err, result) {
+              if (err) {
+                console.error(err); response.send("Error " + err);
+              }
+              else {
+                response.redirect("/");
+                //response.render ('index', {title: "Brocolito", rows: highscores.rows, _: _});
+              }
+            });
+          }
+        }
     });
+
+
+
   });
 });
 
