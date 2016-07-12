@@ -210,7 +210,6 @@
     if (!finished) {
       document.getElementById("score").value = score;
       document.getElementById("scoreForm").submit();
-      //$.get("/gameOver", {score: score});
       finished = true;
       game.time.events.add(Phaser.Timer.SECOND * DELAY_QUIT_GAME, quitGame, this);
     }
