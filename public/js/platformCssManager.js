@@ -32,6 +32,10 @@ $(document).ready(function () {
      // ads
      $('.ads').css("display","none");
 
+
+     // Tutorial
+     $('#tutorial').css("display","none");
+
      // Visitors counter
      $('#visitsCounter').css("display","none");
     }
@@ -49,7 +53,8 @@ $(document).ready(function () {
      // Brocolito image
      $('#brocolitoImage').css("left", "52%");
 
-
+     $('#tutorial').css("right","10%");
+     $('#tutorial').css("top", "65%");
 
     }
 });
