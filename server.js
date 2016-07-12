@@ -37,7 +37,7 @@ app.get('/', (request, response) => {
   pg.connect(DATABASE_URL, function(err, client, done) {
     if (err) throw err;
     console.log('At root of Brocolito.io....');
-    client.query('SELECT * FROM usuarios ORDER BY maxpoints;', function (err, result) {
+    client.query('SELECT * FROM usuarios ORDER BY maxpoints DESC limit 4;', function (err, result) {
       done();
       if (err) {
         console.error(err); response.send("Error " + err);
