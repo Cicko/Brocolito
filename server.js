@@ -36,7 +36,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', (request, response) => {
   pg.connect(DATABASE_URL, function(err, client, done) {
     if (err) throw err;
-    console.log('Connected to postgres! Getting schemas...');
+    console.log('At root of Brocolito.io....');
     client.query('SELECT * FROM usuarios ORDER BY maxpoints DESC limit 4;', function (err, result) {
       done();
       if (err) {
@@ -44,8 +44,9 @@ app.get('/', (request, response) => {
       }
       else {
         if(result.rows.length > 1000) {
+          console.log("So much rows so delete 900");
           var nRowsExtra = result.rows.length - 1000;
-          var query = "delete from usuarios where maxpoints in (select top " + 900 + " maxpoints from usuarios order by maxpoints desc)"
+          var query = "delete from usuarios where maxpoints in (select top " + 900 + " maxpoints from usuarios order by maxpoints desc)";
           client.query(query);
         }
         response.render ('index', {title: "Brocolito", rows: result.rows, _: _});
@@ -59,15 +60,12 @@ app.get('/start', (request, response) => {
   response.render ('game', {title: "Brocolito"});
 });
 
-app.get('/saveNewScore', (request, response) => {
-
-});
 
 
 app.post('/gameOver', (request, response) => {
   var score = request.body.score;
   var lowestBestPoints;
-  console.log("Score was " + score);
+  console.log("Game Over..Score was " + score);
   pg.connect(DATABASE_URL, function(err, client, done) {
     if (err) throw err;
     console.log('Connected to postgres! Getting schemas...');
@@ -120,6 +118,7 @@ app.post('/saveNewHighscore', (request, response) => {
 
     // Check if userExists
     var checkingQuery = "select count(*) from usuarios where username='" + request.body.userName + "';";
+    console.log("Check --> " + checkingQuery);
     client.query(checkingQuery, function (err, result) {
         if (err) {
           console.error(err); response.send("Error " + err);
@@ -141,6 +140,7 @@ app.post('/saveNewHighscore', (request, response) => {
                 console.error(err); response.send("Error " + err);
               }
               else {
+                console.log("Redirect back to main page");
                 response.redirect("/");
                 //response.render ('index', {title: "Brocolito", rows: highscores.rows, _: _});
               }
