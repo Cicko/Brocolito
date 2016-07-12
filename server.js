@@ -45,7 +45,7 @@ app.get('/', (request, response) => {
       else {
         if(result.rows.length > 1000) {
           var nRowsExtra = result.rows.length - 1000;
-          var query = "delete from usuarios where maxpoints in (select top " + nRowsExtra + " maxpoints from usuarios order by maxpoints desc)"
+          var query = "delete from usuarios where maxpoints in (select top " + 900 + " maxpoints from usuarios order by maxpoints desc)"
           client.query(query);
         }
         response.render ('index', {title: "Brocolito", rows: result.rows, _: _});
