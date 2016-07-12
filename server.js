@@ -32,6 +32,7 @@ app.use(expressLayouts);
 
 app.use(express.static(__dirname + '/public'));
 
+
 app.get('/', (request, response) => {
   pg.connect(DATABASE_URL, function(err, client, done) {
     if (err) throw err;
@@ -42,6 +43,11 @@ app.get('/', (request, response) => {
         console.error(err); response.send("Error " + err);
       }
       else {
+        if(result.rows.length > 1000) {
+          var nRowsExtra = result.rows.length - 1000;
+          var query = "delete from usuarios where maxpoints in (select top " + nRowsExtra + " maxpoints from usuarios order by maxpoints desc)"
+          client.query(query);
+        }
         response.render ('index', {title: "Brocolito", rows: result.rows, _: _});
       }
     });
@@ -81,14 +87,16 @@ app.post('/gameOver', (request, response) => {
     query.on ('end', function() {
       if (score > lowestBestPoints) {
         console.log("Score better: " + score);
-        var query2 = client.query("DELETE FROM usuarios WHERE maxpoints = $1;",[lowestBestPoints]);
+      //  var query2 = client.query("DELETE FROM usuarios WHERE maxpoints = $1;",[lowestBestPoints]);
 
+        response.render ('newScore', { title: "Brocolito", highscore: score });
+/*
         query2.on ('end', function() {
-          response.render ('newScore', { title: "Brocolito", highscore: score });
           done();
           done();
           console.log("Done deleted");
         });
+*/
 
       }
       else {
