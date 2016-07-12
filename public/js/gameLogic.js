@@ -4,6 +4,7 @@
   const DELAY_PAUSE_GAME = 0.3;
   const DELAY_QUIT_GAME = 1;
   const DELAY_CREATING_ENEMY = 2;
+  const NEXT_MOUTH_SCORE = 200;
   var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
   var sprite;
@@ -175,13 +176,13 @@
     score += scoreIncrement;
     branch.destroy();
     createbranch();
-    if ((score + 10) % 50 == 0) {
+    if ((score + 10) % NEXT_MOUTH_SCORE == 0) {
       randomPos = new Phaser.Point();
       randomPos.x = game.world.randomX * 0.8;
       randomPos.y = game.world.randomY * 0.8;
       mouthPlatform = new Phaser.Circle(randomPos.x, randomPos.y,platformRadius);
     }
-    if (score % 50 == 0) {
+    if (score % NEXT_MOUTH_SCORE == 0) {
       createNewEnemy();
       mouthPlatform = null;
     }

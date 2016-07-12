@@ -19,6 +19,13 @@
   background: #12e355;
 }
 
+#tutorial {
+  color: black;
+  position: absolute;
+  right: 10%;
+  top: 65%;
+}
+
 
 
 footer {
