@@ -23,6 +23,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/cicko/brocolito#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "chai": "^2.3.0",
     "codemirror": "^5.15.2",
     "ejs": "^2.4.1",
