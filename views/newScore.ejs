@@ -1,16 +1,25 @@
+<html>
 
+<head>
+  <script type="text/javascript" src="js/newScore.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/newScore.css">
+</head>
 
+<body>
 
-<script type="text/javascript" src="js/newScore.js"></script>
-
-<h1> CONGRATULATIONS FOR YOUR <%= highscore %> POINTS!!!  Introduce your user name: </h1>
+<h2> <center> CONGRATULATIONS !!! <br>You made <h1> <%= highscore %> points !!! </h1>  <br> Introduce your username to save your highscore: </center> </h2>
 <!--<input type="text" id="userName" name="userName"> -->
 <!-- <a href="/saveNewHighscore"><button type="button" id="saveHighscoreButton"> Save </button></a> -->
 
-<form id="saveNewHighscoreForm" action="saveNewHighscore" method="post">
-    <div>
+<div id="mainForm" class="login-form">
+  <div id="highscoreForm" class="form">
+    <form class="login-form" id="saveNewHighscoreForm" action="saveNewHighscore" method="post">
         <input type="number" name="highscore" value= "<%= highscore %>" style="display:none;" ></input>
-        <input type="text" id="highscoreUsername" name="userName"></input>
-    </div>
-<input type="submit" value="Submit"></input>
-</form>
+        <input type="text" id="highscoreUsername" placeholder="username" name="userName"></input>
+        <input type="submit" value="Send" id="highscoreSubmit"></input>
+    </form>
+  </div>
+</div>
+</body>
+
+</html>
