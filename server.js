@@ -61,7 +61,7 @@ app.get('/start', (request, response) => {
 
 
 
-app.get('/gameOver', (request, response) => {
+app.post('/gameOver', (request, response) => {
   var score = request.body.score;
   var lowestBestPoints;
   console.log("Game Over..Score was " + score);
@@ -116,7 +116,7 @@ app.get('/saveNewHighscore', (request, response) => {
     console.log('Connected to postgres! Getting schemas...');
 
     // Check if userExists
-    var checkingQuery = "select count(*) from usuarios where username='" + request.body.userName + "';";
+    var checkingQuery = "select count(*) from usuarios where username='" + request.query.userName + "';";
     console.log("Check --> " + checkingQuery);
     client.query(checkingQuery, function (err, result) {
         if (err) {
@@ -124,15 +124,15 @@ app.get('/saveNewHighscore', (request, response) => {
         }
         else {
           if (result.rows[0].count > 0) {
-            console.log("UserName: " + request.body.userName + " already exists..");
+            console.log("UserName: " + request.query.userName + " already exists..");
             response.render ('newScore', {
               title: "Brocolito",
-              highscore: request.body.highscore,
-              error: request.body.userName + " already exists. Put another."
+              highscore: request.query.highscore,
+              error: request.query.userName + " already exists. Put another."
             });
           }
           else {
-            var query = "INSERT INTO usuarios VALUES ('" + request.body.userName + "', " + request.body.highscore + ");";
+            var query = "INSERT INTO usuarios VALUES ('" + request.query.userName + "', " + request.query.highscore + ");";
             console.log("Query is: " + query);
             client.query(query, function (err, result) {
               if (err) {
@@ -147,14 +147,7 @@ app.get('/saveNewHighscore', (request, response) => {
           }
         }
     });
-
-
-
   });
-});
-
-app.get('/newScore', (request, response) => {
-  console.log("newScore get");
 });
 
 app.listen(app.get('port'), () => {
