@@ -85,7 +85,7 @@ app.post('/gameOver', (request, response) => {
       if (score > lowestBestPoints) {
         console.log("Score better: " + score);
       //  var query2 = client.query("DELETE FROM usuarios WHERE maxpoints = $1;",[lowestBestPoints]);
-
+        done();
         response.render ('newScore', { title: "Brocolito", highscore: score, error: "none" });
 /*
         query2.on ('end', function() {
@@ -98,13 +98,9 @@ app.post('/gameOver', (request, response) => {
       }
       else {
         console.log("Too low score with " + score);
-        done();
-        var i = 0;
-        //var backURL = request.header('Referer') || '/';
-        //response.redirect(backURL);
         // do your thang
+        done();
         response.redirect("/");
-        //response.render ('index', {title: "Brocolito", rows: highscores.rows, _: _});
       }
     });
   });
@@ -125,6 +121,7 @@ app.get('/saveNewHighscore', (request, response) => {
         else {
           if (result.rows[0].count > 0) {
             console.log("UserName: " + request.query.userName + " already exists..");
+            done();
             response.render ('newScore', {
               title: "Brocolito",
               highscore: request.query.highscore,
@@ -140,6 +137,7 @@ app.get('/saveNewHighscore', (request, response) => {
               }
               else {
                 console.log("Redirect back to main page");
+                done();
                 response.redirect("/");
                 //response.render ('index', {title: "Brocolito", rows: highscores.rows, _: _});
               }
