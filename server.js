@@ -59,7 +59,7 @@ app.get('/saveNewScore', (request, response) => {
 
 
 app.post('/gameOver', (request, response) => {
-  var score = request.query.score;
+  var score = request.body.score;
   var lowestBestPoints;
   console.log("Score was " + score);
   pg.connect(DATABASE_URL, function(err, client, done) {
@@ -98,24 +98,26 @@ app.post('/gameOver', (request, response) => {
         //var backURL = request.header('Referer') || '/';
         //response.redirect(backURL);
         // do your thang
-        response.render ('index', {title: "Brocolito", rows: highscores.rows, _: _});
+        response.redirect("/");
+        //response.render ('index', {title: "Brocolito", rows: highscores.rows, _: _});
       }
     });
   });
 });
 
-app.get('/saveNewHighscore', (request, response) => {
+app.post('/saveNewHighscore', (request, response) => {
   pg.connect(DATABASE_URL, function(err, client, done) {
     if (err) throw err;
     console.log('Connected to postgres! Getting schemas...');
-    var query = 'INSERT INTO usuarios VALUES (' + request.query.userName + ", " + request.query.maxpoints + ");";
+    var query = "INSERT INTO usuarios VALUES ('" + request.body.userName + "', " + request.body.highscore + ");";
+    console.log("Query is: " + query);
     client.query(query, function (err, result) {
       if (err) {
         console.error(err); response.send("Error " + err);
       }
       else {
-        response.render ('index', {title: "Brocolito", rows: highscores.rows, _: _});
-        //response.get('/');
+        response.redirect("/");
+        //response.render ('index', {title: "Brocolito", rows: highscores.rows, _: _});
       }
     });
   });
