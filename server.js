@@ -37,7 +37,7 @@ app.get('/', (request, response) => {
   pg.connect(DATABASE_URL, function(err, client, done) {
     if (err) throw err;
     console.log('At root of Brocolito.io....');
-    client.query('SELECT * FROM usuarios ORDER BY maxpoints DESC limit 4;', function (err, result) {
+    client.query('SELECT * FROM usuarios ORDER BY maxpoints;', function (err, result) {
       done();
       if (err) {
         console.error(err); response.send("Error " + err);
@@ -61,7 +61,7 @@ app.get('/start', (request, response) => {
 
 
 
-app.post('/gameOver', (request, response) => {
+app.get('/gameOver', (request, response) => {
   var score = request.body.score;
   var lowestBestPoints;
   console.log("Game Over..Score was " + score);
@@ -110,7 +110,7 @@ app.post('/gameOver', (request, response) => {
   });
 });
 
-app.post('/saveNewHighscore', (request, response) => {
+app.get('/saveNewHighscore', (request, response) => {
   pg.connect(DATABASE_URL, function(err, client, done) {
     if (err) throw err;
     console.log('Connected to postgres! Getting schemas...');
