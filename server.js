@@ -54,9 +54,10 @@ app.get('/', (request, response) => {
   });
 });
 
-app.get('/start', (request, response) => {
+app.post('/start', (request, response) => {
   console.log("/start request successful");
-  response.render ('game', {title: "Brocolito"});
+
+  response.render ('game', {title: "Brocolito", extraLife: request.body.extraLife});
 });
 
 

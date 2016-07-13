@@ -1,17 +1,18 @@
 
 
-(function() {
+(function(exports) {
   const DELAY_PAUSE_GAME = 0.3;
   const DELAY_QUIT_GAME = 1;
   const DELAY_CREATING_ENEMY = 2;
   const NEXT_MOUTH_SCORE = 200;
   const SCORE_TO_INCREMENT_MOUTH_SPEED = 100;
   const MOUTH_SPEED_INCREMENT = 1.2;
+  const COLLISION_INTERVAL = 1;
   var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
   var sprite;
 
-
+  var alreadyCollided = false;
 
   var size;
   var mouth;
@@ -38,7 +39,7 @@
   var textReflect = null;
 
   var timer;
-
+  var shakeWorld = 0;
 
   var branch;
   var branchSize = 65;
@@ -50,6 +51,9 @@
 
 
   var lost = true;
+
+  var lives;
+  var livesText;
 
   // Texts
 
@@ -94,7 +98,14 @@
 
   function createText() {
     var motivationText = game.add.text(game.world.width * 0.4, game.world.height * 0.05, brocoliMotivationText);
+
+
+
+
+    livesText = game.add.text(game.world.width * 0.4, game.world.height * 0.1, "You have " + lives + " lives left.");
+
     motivationText.fontSize = 20;
+    livesText.fontSize = 20;
 
     if (!scoreText) {
       scoreText = game.add.text(game.world.width * 0.05, game.world.height * 0.05, "Score: 0");
@@ -102,10 +113,20 @@
 
     motivationText.font = 'Revalia';
     scoreText.font = 'Revalia';
+    livesText.font = 'Revalia';
 
   }
 
   function create() {
+
+      if (document.getElementById("extraLife").value == "yes") {
+        lives = 2;
+        alert("yes");
+      }
+      else {
+        lives = 1;
+        alert("no");
+      }
 
 
       mouthSound1.play();
@@ -177,9 +198,25 @@
   }
 
   function enemyCollision (obj1, obj2) {
-      game.stage.backgroundColor = '#016000';
-      drawGameOverText();
-      game.time.events.add(Phaser.Timer.SECOND * DELAY_PAUSE_GAME, pauseGame, this);
+     if(!alreadyCollided) {
+      lives--;
+      shakeWorld = 50;
+      alreadyCollided = true;
+      game.time.events.add(Phaser.Timer.SECOND * COLLISION_INTERVAL, canCollideAgain, this);
+      if (lives == 0) {
+        drawGameOverText();
+        game.stage.backgroundColor = '#016000';
+        game.time.events.add(Phaser.Timer.SECOND * DELAY_PAUSE_GAME, pauseGame, this);
+      }
+      else {
+        livesText.setText( "You have " + lives + " lives left.");
+      }
+     }
+  }
+
+
+  function canCollideAgain () {
+    alreadyCollided = false;
   }
 
 
@@ -224,20 +261,14 @@
 
   function pauseGame () {
     if (!finished) {
-      if(document.getElementsByTagName("iframe").item(0) == null) {
-          document.write("<div style='width:12%; height:80%; padding-top: 12%; margin-left:5px;border:1px solid #000000; text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'>If you want one more live to get more points please, deactivate adblock.<br /><br /></div>");
-      }
-      else {
         document.getElementById("score").value = score;
         document.getElementById("scoreForm").submit();
         finished = true;
         game.time.events.add(Phaser.Timer.SECOND * DELAY_QUIT_GAME, quitGame, this);
-      }
     }
   }
 
   function quitGame () {
-
       //game.destroy();
   }
 
@@ -267,6 +298,16 @@
 
 
   function update() {
+
+    if (shakeWorld > 0) {
+      var rand1 = game.rnd.integerInRange(-20,20);
+      var rand2 = game.rnd.integerInRange(-20,20);
+      game.world.setBounds(rand1, rand2, game.width + rand1, game.height + rand2);
+      shakeWorld--;
+    }
+    if (shakeWorld == 0) {
+      game.world.setBounds(0, 0, game.width,game.height); // normalize after shake?
+    }
 
     // just move without rotation.
     sprite.rotation = game.physics.arcade.moveToPointer(sprite, 60, game.input.activePointer, 100);
@@ -300,4 +341,6 @@
     //  game.debug.spriteInfo(sprite, 32, 32);
     game.debug.geom(mouthPlatform,'#006000');
   }
-})();
+
+
+})(this);
