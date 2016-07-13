@@ -85,7 +85,7 @@
 
 
       game.load.audio('mouth1', ['sounds/mouth1.ogg','sounds/mouth1.mp3']);
-    
+
       mouthSound1 = game.add.audio('mouth1');
 
     //  game.load.audio('brocolitoMusic', 'sounds/brocolitoMusic.mp3');
@@ -224,15 +224,21 @@
 
   function pauseGame () {
     if (!finished) {
-      document.getElementById("score").value = score;
-      document.getElementById("scoreForm").submit();
-      finished = true;
-      game.time.events.add(Phaser.Timer.SECOND * DELAY_QUIT_GAME, quitGame, this);
+      if(document.getElementsByTagName("iframe").item(0) == null) {
+          document.write("<div style='width:12%; height:80%; padding-top: 12%; margin-left:5px;border:1px solid #000000; text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'>If you want one more live to get more points please, deactivate adblock.<br /><br /></div>");
+      }
+      else {
+        document.getElementById("score").value = score;
+        document.getElementById("scoreForm").submit();
+        finished = true;
+        game.time.events.add(Phaser.Timer.SECOND * DELAY_QUIT_GAME, quitGame, this);
+      }
     }
   }
 
   function quitGame () {
-      game.destroy();
+
+      //game.destroy();
   }
 
 
