@@ -52,7 +52,7 @@
 
   var lost = true;
 
-  var lives;
+  var lives = 0;
   var livesText;
 
   // Texts
@@ -87,12 +87,6 @@
       game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
       game.load.bitmapFont('font', 'css/fonts/GOODDP.TTF');
 
-
-      game.load.audio('mouth1', ['sounds/mouth1.ogg','sounds/mouth1.mp3']);
-
-      mouthSound1 = game.add.audio('mouth1');
-
-    //  game.load.audio('brocolitoMusic', 'sounds/brocolitoMusic.mp3');
   }
 
 
@@ -119,8 +113,12 @@
 
   function create() {
 
-
-      mouthSound1.play();
+      if (document.getElementById("extraLife").value == "yes") {
+        lives = 2;
+      }
+      else {
+        lives = 1;
+      }
 
       mouthPrepared = false;
 

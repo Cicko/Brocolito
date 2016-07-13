@@ -1,9 +1,0 @@
-
-
-
-(function () {
-    
-    function setScore (score) {
-
-    }
-})();
