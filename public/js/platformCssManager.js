@@ -80,7 +80,7 @@
 
        $('#extraLife').css("color","black");
 
-       $('#brocolitoImage').click(function () {
+       $('.ads').click(function () {
          extraLife = true;
          $('#extraLife').text("Extra Life: Yes");
          $('#extraLifeInput').val("yes");
