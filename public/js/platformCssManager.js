@@ -58,12 +58,12 @@ $(document).ready(function () {
 
 
      $('#startButton').hover(function(){
-        $('.ads').css("left","45%");
-        $('.ads').css("bottom", "-10%");
+      //  $('.ads').css("left","45%");
+      //  $('.ads').css("bottom", "-10%");
      }, function () {
-       $('.ads').css("left", "10%");
-       $('.ads').css("bottom", "15%");
      });
+        $('.ads').css("left", "10%");
+        $('.ads').css("bottom", "15%");
 
     }
 });
