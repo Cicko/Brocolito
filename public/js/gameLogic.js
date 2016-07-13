@@ -119,15 +119,6 @@
 
   function create() {
 
-      if (document.getElementById("extraLife").value == "yes") {
-        lives = 2;
-        alert("yes");
-      }
-      else {
-        lives = 1;
-        alert("no");
-      }
-
 
       mouthSound1.play();
 
