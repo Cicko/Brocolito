@@ -32,6 +32,8 @@
   var mouthDelay = 1;
   var mouthSpeed = 600;
 
+  var mouthSound1;
+
   var text = null;
   var textReflect = null;
 
@@ -81,6 +83,11 @@
       game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
       game.load.bitmapFont('font', 'css/fonts/GOODDP.TTF');
 
+
+      game.load.audio('mouth1', ['sounds/mouth1.ogg','sounds/mouth1.mp3']);
+    
+      mouthSound1 = game.add.audio('mouth1');
+
     //  game.load.audio('brocolitoMusic', 'sounds/brocolitoMusic.mp3');
   }
 
@@ -100,6 +107,8 @@
 
   function create() {
 
+
+      mouthSound1.play();
 
       mouthPrepared = false;
 
@@ -195,6 +204,7 @@
 
   function createNewEnemy () {
       var m = game.add.sprite(randomPos.x, randomPos.y, 'mouth');
+
 
       m.width = size * 3;
       m.height = size;

@@ -56,5 +56,17 @@ $(document).ready(function () {
      $('#tutorial').css("right","10%");
      $('#tutorial').css("top", "65%");
 
+
+     $('#startButton').hover(function(){
+      $('.ads').css("left","45%");
+      $('.ads').css("bottom", "10%");
+    }, function () {
+      $('.ads').css("left", "10%");
+      $('.ads').css("bottom", "15%");
+    });
+
+
+
+
     }
 });
