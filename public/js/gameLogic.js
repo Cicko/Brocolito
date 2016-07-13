@@ -5,6 +5,8 @@
   const DELAY_QUIT_GAME = 1;
   const DELAY_CREATING_ENEMY = 2;
   const NEXT_MOUTH_SCORE = 200;
+  const SCORE_TO_INCREMENT_MOUTH_SPEED = 100;
+  const MOUTH_SPEED_INCREMENT = 1.2;
   var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
   var sprite;
@@ -28,7 +30,7 @@
   var mouthOriginY = 200;
 
   var mouthDelay = 1;
-  var mouthSpeed = 400;
+  var mouthSpeed = 600;
 
   var text = null;
   var textReflect = null;
@@ -185,6 +187,9 @@
     if (score % NEXT_MOUTH_SCORE == 0) {
       createNewEnemy();
       mouthPlatform = null;
+    }
+    if (score % SCORE_TO_INCREMENT_MOUTH_SPEED == 0) {
+      mouthSpeed /= MOUTH_SPEED_INCREMENT;
     }
   }
 
