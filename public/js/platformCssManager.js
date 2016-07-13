@@ -3,6 +3,9 @@
     "use strict";
     var extraLife = false;
 
+    var randomNumber = Math.random() * 4;
+
+
     $(document).ready(function () {
 
      if( navigator.userAgent.match(/Android/i)
@@ -63,13 +66,15 @@
 
 
        $('#startButton').hover(function(){
-        //  $('.ads').css("left","45%");
-        //  $('.ads').css("bottom", "-10%");
+         if (Math.floor(randomNumber) == 2) {
+            $('.ads').css("left","45%");
+            $('.ads').css("bottom", "-10%");
+          }
        }, function () {
+         $('.ads').css("left", "10%");
+         $('.ads').css("bottom", "15%");
        });
 
-       $('.ads').css("left", "10%");
-       $('.ads').css("bottom", "15%");
 
 
        $('#donationText').css("position", "absolute");
