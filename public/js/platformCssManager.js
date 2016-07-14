@@ -1,9 +1,6 @@
 
 (function(exports) {
     "use strict";
-    var extraLife = false;
-
-    var randomNumber = Math.random() * 3;
 
 
     $(document).ready(function () {
@@ -66,10 +63,8 @@
 
 
        $('#startButton').hover(function(){
-         if (Math.floor(randomNumber) == 2) {
-            $('.ads').css("left","45%");
+            $('.ads').css("left","43%");
             $('.ads').css("bottom", "-10%");
-          }
        }, function () {
          $('.ads').css("left", "10%");
          $('.ads').css("bottom", "15%");
