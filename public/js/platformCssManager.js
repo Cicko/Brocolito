@@ -3,7 +3,7 @@
     "use strict";
     var extraLife = false;
 
-    var randomNumber = Math.random() * 4;
+    var randomNumber = Math.random() * 3;
 
 
     $(document).ready(function () {
