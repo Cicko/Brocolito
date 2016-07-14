@@ -76,7 +76,6 @@
        });
 
 
-
        $('#donationText').css("position", "absolute");
        $('#donationText').css("color", "black");
        $('#donationText').css("left", "10%");
