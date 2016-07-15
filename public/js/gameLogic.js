@@ -299,7 +299,7 @@
     }
 
     // just move without rotation.
-    sprite.rotation = game.physics.arcade.moveToPointer(sprite, 60, game.input.activePointer, 100);
+    sprite.rotation = game.physics.arcade.moveToPointer(sprite, 60, game.input.activePointer, 85);
     if (mouthPrepared) {
       for (var i = 0; i < mouths.length; i++) {
         game.physics.arcade.moveToXY(mouths[i], sprite.x, sprite.y, mouthDelay, mouthSpeed);
