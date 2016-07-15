@@ -1,8 +1,17 @@
 
 
+var gotItemAudio;
+var mouthAudio;
+var rudaNOOAudio;
+var marceAudio;
+
 $(document).ready(function() {
 
 var getaudio = $('#brocolitoMusic')[0];
+gotItemAudio = $('#gotItemSound')[0];
+mouthAudio = $('#mouthSound')[0];
+rudaNOOAudio = $('#rudaNOOSound')[0];
+marceAudio = $('#marceSound')[0];
  /* Get the audio from the player (using the player's ID), the [0] is necessary */
  var mouseovertimer;
  /* Global variable for a timer. When the mouse is hovered over the speaker it will start playing after hovering for 1 second, if less than 1 second it won't play (incase you accidentally hover over the speaker) */
@@ -64,3 +73,24 @@ var getaudio = $('#brocolitoMusic')[0];
  });
 
  });
+
+
+ function playMouth () {
+   mouthAudio.load();
+   mouthAudio.play();
+ }
+
+ function playMarce () {
+   marceAudio.load();
+   marceAudio.play();
+ }
+
+ function playRudaNOO () {
+   rudaNOOAudio.load();
+   rudaNOOAudio.play();
+ }
+
+ function playGotItem () {
+   gotItemAudio.load();
+   gotItemAudio.play();
+ }
