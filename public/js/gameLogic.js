@@ -189,6 +189,8 @@
   function enemyCollision (obj1, obj2) {
      if(!alreadyCollided) {
       lives--;
+      playMarce();
+
       shakeWorld = 50;
       alreadyCollided = true;
       game.time.events.add(Phaser.Timer.SECOND * COLLISION_INTERVAL, canCollideAgain, this);
@@ -212,6 +214,7 @@
   function branchCollision (obj1, obj2) {
     score += scoreIncrement;
     branch.destroy();
+    playGotItem();
     createbranch();
     if ((score + 10) % NEXT_MOUTH_SCORE == 0) {
       randomPos = new Phaser.Point();
@@ -231,6 +234,7 @@
   function createNewEnemy () {
       var m = game.add.sprite(randomPos.x, randomPos.y, 'mouth');
 
+      playMouth();
 
       m.width = size * 3;
       m.height = size;
@@ -281,7 +285,11 @@
 
   function decrementStartTime () {
     mouthStartDelay -= MOUTH_DELAY_DECREMENT;
-    if (mouthStartDelay <= 0.1) mouthPrepared = true;
+    if (mouthStartDelay <= 0.1) {
+      mouthPrepared = true;
+      playMouth();
+    }
+
     return mouthStartDelay;
   }
 
