@@ -8,15 +8,38 @@ var marceAudio;
 $(document).ready(function() {
 
 var getaudio = $('#brocolitoMusic')[0];
-gotItemAudio = $('#gotItemSound')[0];
-mouthAudio = $('#mouthSound')[0];
-rudaNOOAudio = $('#rudaNOOSound')[0];
-marceAudio = $('#marceSound')[0];
+
+var p1 = new Promise (function () {
+   gotItemAudio = $('#gotItemSound')[0];
+});
+var p2 = new Promise (function () {
+  mouthAudio = $('#mouthSound')[0];
+});
+
+var p3 = new Promise (function () {
+  rudaNOOAudio = $('#rudaNOOSound')[0];
+});
+
+var p4 = new Promise (function () {
+  marceAudio = $('#marceSound')[0];
+});
+
+Promise.all([p1, p2, p3, p4]).then (function () {
+  mouthAudio.load();
+  gotItemAudio.load();
+  rudaNOOAudio.load();
+  marceAudio.load();
+})
+
+
  /* Get the audio from the player (using the player's ID), the [0] is necessary */
  var mouseovertimer;
  /* Global variable for a timer. When the mouse is hovered over the speaker it will start playing after hovering for 1 second, if less than 1 second it won't play (incase you accidentally hover over the speaker) */
  var audiostatus = 'off';
  /* Global variable for the audio's status (off or on). It's a bit crude but it works for determining the status. */
+
+
+
 
  $(document).on('mouseenter', '.speaker', function() {
    /* Bonus feature, if the mouse hovers over the speaker image for more than 1 second the audio will start playing */
@@ -72,25 +95,31 @@ marceAudio = $('#marceSound')[0];
    /*Set the status back to off*/
  });
 
+
+
  });
 
 
+
  function playMouth () {
-   mouthAudio.load();
+   if (!mouthAudio.paused) {
+     mouthAudio.stop();
+   }
    mouthAudio.play();
  }
 
  function playMarce () {
-   marceAudio.load();
    marceAudio.play();
  }
 
  function playRudaNOO () {
-   rudaNOOAudio.load();
    rudaNOOAudio.play();
  }
 
  function playGotItem () {
-   gotItemAudio.load();
+   if (!gotItemAudio.paused) {
+     gotItemAudio.pause();
+     gotItemAudio.currentTime = 0;
+  }
    gotItemAudio.play();
  }

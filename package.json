@@ -35,6 +35,7 @@
     "gulp-shell": "^0.5.2",
     "gulp-watch": "^4.3.5",
     "heroku": "^0.2.0",
+    "howler": "^1.1.29",
     "jquery": "^3.0.0",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
