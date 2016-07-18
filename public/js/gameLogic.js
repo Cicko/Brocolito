@@ -6,8 +6,9 @@
   const DELAY_CREATING_ENEMY = 2;
   const NEXT_MOUTH_SCORE = 200;
   const SCORE_TO_INCREMENT_MOUTH_SPEED = 100;
-  const MOUTH_SPEED_INCREMENT = 1.2;
+  const MOUTH_SPEED_INCREMENT = 1.4;
   const COLLISION_INTERVAL = 1;
+  const RESET_COMBO_DELAY = 0.4;
   var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
   var sprite;
@@ -211,10 +212,21 @@
   }
 
 
+var combo = 0;
+var timeToFinishCombo;
+
   function branchCollision (obj1, obj2) {
     score += scoreIncrement;
     branch.destroy();
-    playGotItem();
+
+    if (this.game.time.totalElapsedSeconds() > timeToFinishCombo) combo = 0;
+    else combo++;
+
+    playGotItem(combo);
+
+    timeToFinishCombo = this.game.time.totalElapsedSeconds() + RESET_COMBO_DELAY;
+
+
     createbranch();
     if ((score + 10) % NEXT_MOUTH_SCORE == 0) {
       randomPos = new Phaser.Point();
@@ -230,6 +242,12 @@
       mouthSpeed /= MOUTH_SPEED_INCREMENT;
     }
   }
+
+  function resetCombo () {
+
+    combo = 0;
+  }
+
 
   function createNewEnemy () {
       var m = game.add.sprite(randomPos.x, randomPos.y, 'mouth');

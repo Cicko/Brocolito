@@ -1,6 +1,10 @@
 
 
 var gotItemAudio;
+var gotItem2Audio;
+var gotItem3Audio;
+var gotItem4Audio;
+
 var mouthAudio;
 var rudaNOOAudio;
 var marceAudio;
@@ -11,6 +15,10 @@ var getaudio = $('#brocolitoMusic')[0];
 
 var p1 = new Promise (function () {
    gotItemAudio = $('#gotItemSound')[0];
+   gotItem2Audio = $('#gotItem2Sound')[0];
+   gotItem3Audio = $('#gotItem3Sound')[0];
+   gotItem4Audio = $('#gotItem4Sound')[0];
+
 });
 var p2 = new Promise (function () {
   mouthAudio = $('#mouthSound')[0];
@@ -27,6 +35,9 @@ var p4 = new Promise (function () {
 Promise.all([p1, p2, p3, p4]).then (function () {
   mouthAudio.load();
   gotItemAudio.load();
+  gotItem2Audio.load();
+  gotItem3Audio.load();
+  gotItem4Audio.load();
   rudaNOOAudio.load();
   marceAudio.load();
 })
@@ -102,9 +113,6 @@ Promise.all([p1, p2, p3, p4]).then (function () {
 
 
  function playMouth () {
-   if (!mouthAudio.paused) {
-     mouthAudio.stop();
-   }
    mouthAudio.play();
  }
 
@@ -116,10 +124,40 @@ Promise.all([p1, p2, p3, p4]).then (function () {
    rudaNOOAudio.play();
  }
 
- function playGotItem () {
-   if (!gotItemAudio.paused) {
-     gotItemAudio.pause();
-     gotItemAudio.currentTime = 0;
+ function playGotItem (number) {
+   switch (number) {
+     case 0:
+      if (!gotItemAudio.paused) {
+        gotItemAudio.pause();
+        gotItemAudio.currentTime = 0;
+      }
+      gotItemAudio.play();
+      break;
+    case 1:
+      if (!gotItemAudio.paused) {
+        gotItemAudio.pause();
+        gotItemAudio.currentTime = 0;
+      }
+      gotItem2Audio.play();
+      break;
+    case 2:
+      if (!gotItem2Audio.paused) {
+        gotItem2Audio.pause();
+        gotItem2Audio.currentTime = 0;
+      }
+      gotItem3Audio.play();
+      break;
+    case 3:
+      if (!gotItem3Audio.paused) {
+        gotItem3Audio.pause();
+        gotItem3Audio.currentTime = 0;
+      }
+      gotItem4Audio.play();
+    default:
+      if (!gotItem4Audio.paused) {
+        gotItem4Audio.pause();
+        gotItem4Audio.currentTime = 0;
+      }
+      gotItem4Audio.play();
   }
-   gotItemAudio.play();
- }
+}
