@@ -8,7 +8,7 @@
   const SCORE_TO_INCREMENT_MOUTH_SPEED = 100;
   const MOUTH_SPEED_INCREMENT = 1.4;
   const COLLISION_INTERVAL = 1;
-  const RESET_COMBO_DELAY = 0.4;
+  const RESET_COMBO_DELAY = 0.6;
   var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
   var sprite;
@@ -212,7 +212,7 @@
   }
 
 
-var combo = 0;
+var combo = -1;
 var timeToFinishCombo;
 
   function branchCollision (obj1, obj2) {
@@ -223,6 +223,8 @@ var timeToFinishCombo;
     else combo++;
 
     playGotItem(combo);
+
+
 
     timeToFinishCombo = this.game.time.totalElapsedSeconds() + RESET_COMBO_DELAY;
 
