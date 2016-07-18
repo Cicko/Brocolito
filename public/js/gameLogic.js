@@ -7,6 +7,7 @@
   const NEXT_MOUTH_SCORE = 200;
   const SCORE_TO_INCREMENT_MOUTH_SPEED = 100;
   const MOUTH_SPEED_INCREMENT = 1.4;
+  const DELAY_REMOVE_COMBO_TEXT = 1;
   const COLLISION_INTERVAL = 1;
   const RESET_COMBO_DELAY = 0.6;
   var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
@@ -214,6 +215,7 @@
 
 var combo = -1;
 var timeToFinishCombo;
+var comboText;
 
   function branchCollision (obj1, obj2) {
     score += scoreIncrement;
@@ -223,6 +225,29 @@ var timeToFinishCombo;
     else combo++;
 
     playGotItem(combo);
+
+    if (combo > 0) {
+        score += combo * scoreIncrement;
+        if (combo == 1)
+          comboText = game.add.text(game.world.centerX, game.world.centerY - game.world.height / 4, "COMBO x" + (combo+1));
+        else
+          comboText.setText("COMBO x" + (combo+1));
+
+        comboText.font = "Revalia";
+        comboText.fontSize = 60;
+        comboText.stroke= "red";
+        comboText.strokeThickness = 10;
+
+        game.time.events.add(Phaser.Timer.SECOND * DELAY_REMOVE_COMBO_TEXT, removeComboText, this);
+    }
+
+    function removeComboText () {
+      comboText.destroy();
+    }
+
+    function removeScoreIncrement () {
+
+    }
 
 
 
@@ -277,12 +302,7 @@ var timeToFinishCombo;
         document.getElementById("score").value = score;
         document.getElementById("scoreForm").submit();
         finished = true;
-        game.time.events.add(Phaser.Timer.SECOND * DELAY_QUIT_GAME, quitGame, this);
     }
-  }
-
-  function quitGame () {
-      //game.destroy();
   }
 
 
@@ -297,9 +317,9 @@ var timeToFinishCombo;
       //  Our font + size
         text.fontWeight = 'bold';
         text.stroke= "#07530a";
+        text.strokeThickness = 10;
         text.fontSize = 50;
         text.fill = '#000000';
-        text.strokeThickness = 10;
   }
 
 
