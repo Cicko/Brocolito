@@ -44,9 +44,12 @@
        // Visitors counter
        $('#visitsCounter').css("display","none");
       }
-     else {
+     else { // PC
        $('#brocolitoTitle').css("font-size", 170);
 
+
+       $('#facebooklogin').css("right", "5%");
+       $('#facebooklogin').css("top", "5%");
 
        // speaker
        $('speaker').css("top", "5%");

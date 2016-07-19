@@ -21,6 +21,10 @@
   display: block;
 }
 
+#facebooklogin {
+  position: absolute;
+}
+
 .speakerplay {
   background-position: 0 0;
 }

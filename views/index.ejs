@@ -3,6 +3,7 @@
 <SCRIPT SRC="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=733283&bid=1814615" TYPE="text/javascript"></SCRIPT>
 <!-- End BidVertiser code -->
 
+
 <h1 id="brocolitoTitle"> Brocolito.io </h1>
 
 <div class="speaker speakerplay"></div>
@@ -105,6 +106,19 @@ if(document.getElementsByTagName("iframe").item(0) == null) {
   //  $('#extraLife').html('You can not get extra life with <font color="red">adblock</font> activated.');
 }
 --></script>
+
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<fb:login-button id="facebooklogin" scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+<div id="status">
+</div>
 
 <footer>
 
