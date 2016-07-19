@@ -49,7 +49,7 @@
 
 
        $('#facebooklogin').css("right", "5%");
-       $('#facebooklogin').css("top", "5%");
+       $('#facebooklogin').css("top", "10%");
 
        // speaker
        $('speaker').css("top", "5%");
