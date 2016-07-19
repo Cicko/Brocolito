@@ -24,7 +24,11 @@
   position: absolute;
 }
 
-
+#fbstatus {
+  position: absolute;
+  left: 80%;
+  bottom: 96%;
+}
 
 footer {
   position: absolute;
@@ -41,4 +45,4 @@ footer {
   font-size: 20px;
   color: black;
 }
-*/
+*/rd

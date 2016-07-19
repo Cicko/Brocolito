@@ -17,7 +17,9 @@
   width: 30px;
   cursor: pointer;
   display: block;
-  position: absolute;
+  position: fixed;
+  left: 2%;
+  top: 3%;
   display: block;
 }
 
