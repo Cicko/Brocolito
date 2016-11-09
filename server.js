@@ -54,7 +54,7 @@ app.get('/', (request, response) => {
   });
 });
 
-app.post('/start', (request, response) => {
+app.get('/start', (request, response) => {
   console.log("/start request successful");
 
   response.render ('game', {title: "Brocolito", extraLife: request.body.extraLife});
@@ -62,7 +62,7 @@ app.post('/start', (request, response) => {
 
 
 
-app.get('/gameOver', (request, response) => {
+app.post('/gameOver', (request, response) => {
   var score = request.body.score;
   var lowestBestPoints;
   console.log("Game Over..Score was " + score);
@@ -107,13 +107,19 @@ app.get('/gameOver', (request, response) => {
   });
 });
 
-app.get('/saveNewHighscore', (request, response) => {
+app.post('/saveNewHighscore', (request, response) => {
+
+// GET METHOD USES request.query.userName
+  var userName = request.body.userName;
+  var score = request.body.highscore;
+
   pg.connect(DATABASE_URL, function(err, client, done) {
     if (err) throw err;
     console.log('Connected to postgres! Getting schemas...');
 
-    // Check if userExists
-    var checkingQuery = "select count(*) from usuarios where username='" + request.query.userName + "';";
+    //
+    //var checkingQuery = "select count(*) from usuarios where username='" + request.query.userName + "';";
+    var checkingQuery = "select count(*) from usuarios where username='" + userName + "';";
     console.log("Check --> " + checkingQuery);
     client.query(checkingQuery, function (err, result) {
         if (err) {
@@ -121,16 +127,16 @@ app.get('/saveNewHighscore', (request, response) => {
         }
         else {
           if (result.rows[0].count > 0) {
-            console.log("UserName: " + request.query.userName + " already exists..");
+            console.log("UserName: " + userName + " already exists..");
             done();
             response.render ('newScore', {
               title: "Brocolito",
-              highscore: request.query.highscore,
-              error: request.query.userName + " already exists. Put another."
+              highscore: score,
+              error: userName + " already exists. Put another."
             });
           }
           else {
-            var query = "INSERT INTO usuarios VALUES ('" + request.query.userName + "', " + request.query.highscore + ");";
+            var query = "INSERT INTO usuarios VALUES ('" + userName + "', " + score + ");";
             console.log("Query is: " + query);
             client.query(query, function (err, result) {
               if (err) {

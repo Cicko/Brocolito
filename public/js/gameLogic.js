@@ -297,6 +297,8 @@ var comboText;
 
   var finished = false;
 
+
+  // END GAME
   function pauseGame () {
     if (!finished) {
         document.getElementById("score").value = score;
