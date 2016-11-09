@@ -62,7 +62,7 @@ app.post('/start', (request, response) => {
 
 
 
-app.post('/gameOver', (request, response) => {
+app.get('/gameOver', (request, response) => {
   var score = request.body.score;
   var lowestBestPoints;
   console.log("Game Over..Score was " + score);
