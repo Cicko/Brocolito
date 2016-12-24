@@ -37,6 +37,8 @@ Body
   color: #fff;
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
 }
 
 #brocolitoImage {
@@ -57,6 +59,8 @@ Body
 Leaderboard
 --------------------*/
 .leaderboard {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   opacity: 0.98;
   border: 4px solid black;
@@ -75,6 +79,7 @@ Leaderboard
   padding: 12px 13px 8px;
   text-align: center;
 }
+/* the cup logo */
 .leaderboard h1 svg {
   width: 25px;
   height: 26px;
