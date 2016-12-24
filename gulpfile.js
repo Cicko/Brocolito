@@ -11,5 +11,7 @@ gulp.task('default', [], function() {
 });
 
 gulp.task('server', function () {
-  return gulp.src('').pipe(shell([ 'node --harmony_destructuring server.js' ]));
+//  return gulp.src('').pipe(shell([ 'node --harmony_destructuring server.js' ]));
+  return gulp.src('').pipe(shell([ 'node server.js' ]));
+
 });
