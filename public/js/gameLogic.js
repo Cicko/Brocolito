@@ -177,7 +177,29 @@
       mouth.body.collideWorldBounds = true;
 
       mouths = new Array(mouth);
+
+
+
+          if( navigator.userAgent.match(/Android/i)
+          || navigator.userAgent.match(/webOS/i)
+          || navigator.userAgent.match(/iPhone/i)
+          || navigator.userAgent.match(/iPad/i)
+          || navigator.userAgent.match(/iPod/i)
+          || navigator.userAgent.match(/BlackBerry/i)
+          || navigator.userAgent.match(/Windows Phone/i)
+          ){
+            alert("On mobile");
+            onMobile = true;
+            gyro.frequency = 10;
+            gyro.startTracking(function(o) {
+              // updating player velocity
+              sprite.position.x += o.gamma / 20;
+              sprite.position.y += o.beta / 20;
+            });
+          }
   }
+
+  var onMobile = false;
 
   function createbranch () {
       branch = game.add.sprite(game.world.randomX * 0.9, game.world.randomY * 0.9, 'branch');
@@ -348,26 +370,9 @@ var comboText;
       game.world.setBounds(0, 0, game.width,game.height); // normalize after shake?
     }
 
-
-    if( navigator.userAgent.match(/Android/i)
-    || navigator.userAgent.match(/webOS/i)
-    || navigator.userAgent.match(/iPhone/i)
-    || navigator.userAgent.match(/iPad/i)
-    || navigator.userAgent.match(/iPod/i)
-    || navigator.userAgent.match(/BlackBerry/i)
-    || navigator.userAgent.match(/Windows Phone/i)
-    ){
-      gyro.frequency = 10;
-      gyro.startTracking(function(o) {
-        // updating player velocity
-        sprite.position.x += o.gamma / 20;
-        sprite.position.y += o.beta / 20;
-      });
-    }
-    else {
+    if (!onMobile) {
       sprite.rotation = game.physics.arcade.moveToPointer(sprite, 60, game.input.activePointer, 85);
     }
-
 
     if (mouthPrepared) {
       for (var i = 0; i < mouths.length; i++) {
