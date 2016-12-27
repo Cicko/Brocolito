@@ -75,6 +75,8 @@
             $('.ads').css("left","43%");
             $('.ads').css("bottom", "-10%");
        }, function () {
+            $('.ads').css("left", "10%");
+            $('.ads').css("bottom", "15%");
        });
 
        $('.ads').css("left", "10%");
