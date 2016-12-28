@@ -188,13 +188,12 @@
           || navigator.userAgent.match(/BlackBerry/i)
           || navigator.userAgent.match(/Windows Phone/i)
           ){
-            alert("On mobile");
             onMobile = true;
             gyro.frequency = 10;
             gyro.startTracking(function(o) {
               // updating player velocity
-              sprite.position.x += o.gamma / 20;
-              sprite.position.y += o.beta / 20;
+              sprite.position.x += o.gamma;
+              sprite.position.y += o.beta;
             });
           }
   }
