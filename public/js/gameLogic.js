@@ -193,7 +193,6 @@
             gyro.frequency = 10;
             gyro.startTracking(function(o) {
               // updating player velocity
-              alert(o.gamma);
               sprite.position.x += o.gamma / 20;
               sprite.position.y += o.beta / 20;
             });
