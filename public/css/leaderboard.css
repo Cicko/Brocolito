@@ -59,7 +59,7 @@ Body
 Leaderboard
 --------------------*/
 .leaderboard {
-  display: flex;
+  display: block;
   flex-direction: column;
   position: absolute;
   opacity: 0.98;
