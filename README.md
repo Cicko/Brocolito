@@ -1,6 +1,6 @@
 ## BROCOLITO.IO
 
-![brocolito](./images/screenshot.png)
+![brocolito](./public/images/screenshot.png)
 
 
 [Brocolito.io](brocolito.io) is an videogame developed in javascript using the [Phaser library](phaser.io) which purpose is just having fun testing your speed and reflex skills.
