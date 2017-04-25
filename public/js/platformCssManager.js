@@ -2,6 +2,9 @@
 (function(exports) {
     "use strict";
 
+    var adPosition = $('.ads').offset();
+
+
 
     $(document).ready(function () {
 
@@ -70,13 +73,15 @@
        $('#tutorial').css("right","10%");
        $('#tutorial').css("top", "65%");
 
+       var p = $( "#startButton" );
+       var position = p.offset();
+
+           console.log(adPosition.top);
 
        $('#startButton').hover(function(){
-            $('.ads').css("left","43%");
-            $('.ads').css("bottom", "-10%");
+            $('.ads').css({top: position.top, left: position.left, position:'absolute'});
        }, function () {
-            $('.ads').css("left", "10%");
-            $('.ads').css("bottom", "15%");
+            $('.ads').css({top: adPosition.top, left: adPosition.left, position:'absolute'});
        });
 
        $('.ads').css("left", "10%");
