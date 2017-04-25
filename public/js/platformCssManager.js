@@ -5,7 +5,6 @@
     var adPosition = $('.ads').offset();
 
 
-
     $(document).ready(function () {
 
      if( navigator.userAgent.match(/Android/i)
@@ -76,13 +75,16 @@
        var p = $( "#startButton" );
        var position = p.offset();
 
-           console.log(adPosition.top);
-
        $('#startButton').hover(function(){
             $('.ads').css({top: position.top, left: position.left, position:'absolute'});
        }, function () {
-            $('.ads').css({top: adPosition.top, left: adPosition.left, position:'absolute'});
+            $('.ads').css("left", "10%");
+            $('.ads').css("bottom", "15%");
        });
+
+       $('#startButton').click(function() {
+         $('.ads').click();
+       })
 
        $('.ads').css("left", "10%");
        $('.ads').css("bottom", "15%");
