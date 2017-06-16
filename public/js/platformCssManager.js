@@ -75,6 +75,7 @@
        var p = $( "#startButton" );
        var position = p.offset();
 
+/*
        $('#startButton').hover(function(){
             $('.ads').css({top: position.top, left: position.left, position:'absolute'});
        }, function () {
@@ -85,7 +86,7 @@
        $('#startButton').click(function() {
          $('.ads').click();
        })
-
+*/
        $('.ads').css("left", "10%");
        $('.ads').css("bottom", "15%");
 
