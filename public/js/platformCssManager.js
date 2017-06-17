@@ -62,7 +62,7 @@
 
        var isChrome = !!window.chrome && !!window.chrome.webstore;
        if (isChrome)
-          $('.leaderboard').css("height", "46.5%");
+          $('.leaderboard').css("height", "42%");
        else // probably is firefox
           $('.leaderboard').css("height", "47.7%");
 
