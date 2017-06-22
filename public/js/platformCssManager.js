@@ -60,11 +60,20 @@
        // Leaderboard
        $('.leaderboard').css("width", "20%");
 
+
+
+       var olElement = document.getElementsByTagName("ol")[0];
+       var h1Element = document.getElementById("h1-highscore");
+       var boundingRect = olElement.getBoundingClientRect();
+       var h1Rect = h1Element.getBoundingClientRect()
+       var olHeight = boundingRect.bottom - boundingRect.top;
+       var h1Height = h1Rect.bottom - h1Rect.top;
+
+       alert(h1Height);
+
        var isChrome = !!window.chrome && !!window.chrome.webstore;
-       if (isChrome)
-          $('.leaderboard').css("height", "42%");
-       else // probably is firefox
-          $('.leaderboard').css("height", "47.7%");
+       //if (isChrome)
+          $('.leaderboard').css("height",olHeight + h1Height);
 
        // Brocolito image
        $('#brocolitoImage').css("left", "52%");

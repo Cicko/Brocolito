@@ -298,7 +298,7 @@ var comboText;
 
 
   function createNewEnemy () {
-      var m = game.add.sprite(randomPos.x, randomPos.y, 'mouth');
+      var m = game.add.sprite(randomPos.x | 250, randomPos.y | 250, 'mouth');
 
       playMouth();
 
