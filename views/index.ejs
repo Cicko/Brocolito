@@ -13,6 +13,13 @@
     <source src="sounds/brocolitoMusic-2.ogg" type="audio/ogg" />
 </audio>
 
+<script>
+alert = function() {
+  console.log(new Error().stack);
+  old.apply(window, arguments);
+};
+</script>
+
 
 <img src="images/brocolito2.png" alt="Hi!! I am Brocolito" class="star" id="brocolitoImage"/>
 
