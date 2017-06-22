@@ -69,7 +69,6 @@
        var olHeight = boundingRect.bottom - boundingRect.top;
        var h1Height = h1Rect.bottom - h1Rect.top;
 
-       alert(h1Height);
 
        var isChrome = !!window.chrome && !!window.chrome.webstore;
        //if (isChrome)
