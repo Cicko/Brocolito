@@ -69,7 +69,8 @@
        //if (isChrome)
        //var offset = $('.leaderboard').
        console.log($('.leaderboard'));
-       $('.leaderboard').css("height",(olHeight + h1Height) * 1.46);
+       $('.leaderboard').css("height",(olHeight + h1Height));
+
        $('.leaderboard').css("width", "20%");
 
        // Brocolito image
