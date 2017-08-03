@@ -31,8 +31,6 @@
 
 
        // leaderboard
-       $('.leaderboard').css("width", "60%");
-       $('.leaderboard').css("height", "56.5%");
 
        $('.leaderboard ol li').css("font-size", 14);
 
@@ -58,9 +56,6 @@
        $('speaker').css("right", "5%");
 
        // Leaderboard
-       $('.leaderboard').css("width", "20%");
-
-
 
        var olElement = document.getElementsByTagName("ol")[0];
        var h1Element = document.getElementById("h1-highscore");
@@ -72,7 +67,10 @@
 
        var isChrome = !!window.chrome && !!window.chrome.webstore;
        //if (isChrome)
-          $('.leaderboard').css("height",olHeight + h1Height);
+       //var offset = $('.leaderboard').
+       console.log($('.leaderboard'));
+       $('.leaderboard').css("height",(olHeight + h1Height) * 1.46);
+       $('.leaderboard').css("width", "20%");
 
        // Brocolito image
        $('#brocolitoImage').css("left", "52%");
