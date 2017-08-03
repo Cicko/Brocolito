@@ -3,7 +3,7 @@
 ![brocolito](./public/images/screenshot.png)
 
 
-[Brocolito.herokuapp.com](http://www.brocolito.herokuapp.com) is a videogame developed in javascript using the [Phaser library](http://www.phaser.io) which purpose is just having fun testing your speed and reflex skills.
+[Brocolito.herokuapp.com](http://brocolito.herokuapp.com) is a videogame developed in javascript using the [Phaser library](http://www.phaser.io) which purpose is just having fun testing your speed and reflex skills.
 
 ### How to play
 Your mouse is the broccoli and the main goal is to get all the broccoli you can avoiding the malicious mouths.
