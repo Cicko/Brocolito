@@ -34,6 +34,12 @@
   bottom: 86%;
 }
 
+#IOG_CP {
+  position: absolute;
+  left: 80%;
+  bottom: 60%;
+}
+
 footer {
   position: absolute;
   bottom: 1%;
