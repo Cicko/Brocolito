@@ -34,7 +34,7 @@ Body
   height: 100vh;
   margin: 0;
   background: radial-gradient(ellipse farthest-corner at center top, #12e355 0%, #0dad41 100%);
-  color: #fff;
+  color: #000;
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
   display: flex;
@@ -68,7 +68,6 @@ Leaderboard
   left: 50%;
   transform: translate(-50%, -50%);
   /* width: 285px; */
-  height: 40%;
   background: linear-gradient(to bottom, #0dad41, #086425);
   border-radius: 10px;
   box-shadow: 0 7px 30px rgba(62, 9, 11, 0.3);
@@ -86,6 +85,20 @@ Leaderboard
   position: relative;
   top: 3px;
 }
+
+.list {
+  min-width: 300px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+
+/*
 .leaderboard ol {
   list-style: none;
   counter-reset: leaderboard;
@@ -93,17 +106,18 @@ Leaderboard
 }
 .leaderboard ol li {
   position: relative;
-/*  border: 1px solid black;*/
   z-index: 1;
   font-size: 18px;
   counter-increment: leaderboard;
-  /*padding: 18px 10px 18px 50px;*/
   padding: 8.6% 10% 5% 50%;
   backface-visibility: hidden;
   transform: translateZ(0) scale(1, 1);
 }
 .leaderboard ol li::before {
   content: counter(leaderboard);
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
   position: absolute;
   z-index: 2;
 
@@ -174,52 +188,54 @@ Leaderboard
   opacity: 0;
 }
 */
-.leaderboard ol li:nth-child(1) {
+.leaderboard .list .list-item:nth-child(1) {
   background: #12e355;
+  font-size: 23px;
 }
 
-.leaderboard ol li:nth-child(1)::after {
+.leaderboard .list .list-item:nth-child(1)::after {
   background: #10d14e;
 }
-.leaderboard ol li:nth-child(2) {
+.leaderboard .list .list-item:nth-child(2) {
   background: #0fbf47;
+  font-size: 20px;
 }
-.leaderboard ol li:nth-child(2)::after {
+.leaderboard .list .list-item:nth-child(2)::after {
   background: #0dad41;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
 }
-.leaderboard ol li:nth-child(2) mark::before, .leaderboard ol li:nth-child(2) mark::after {
+.leaderboard .list .list-item:nth-child(2) mark::before, .leaderboard .list .list-item:nth-child(2) mark::after {
   border-top: 6px solid #000000;
 /*  bottom: -7px; */
 }
-.leaderboard ol li:nth-child(3) {
+.leaderboard .list .list-item:nth-child(3) {
   background: #0c9b3a;
 }
-.leaderboard ol li:nth-child(3)::after {
+.leaderboard .list .list-item:nth-child(3)::after {
   background: #0c862c;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.11);
 }
-.leaderboard ol li:nth-child(3) mark::before, .leaderboard ol li:nth-child(3) mark::after {
+.leaderboard .list .list-item:nth-child(3) mark::before, .leaderboard .list .list-item:nth-child(3) mark::after {
   border-top: 2px solid #000000;
 /*  bottom: -3px; */
 }
-.leaderboard ol li:nth-child(4) {
+.leaderboard .list .list-item:nth-child(4) {
   background: #09762c;
   border-radius: 0 0 10px 10px;
 }
-.leaderboard ol li:nth-child(4)::after {
+.leaderboard .list .list-item:nth-child(4)::after {
   background: #08651c;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
   border-radius: 0 0 10px 10px;
 }
-.leaderboard ol li:nth-child(4) mark::before, .leaderboard ol li:nth-child(4) mark::after {
+.leaderboard .list .list-item:nth-child(4) mark::before, .leaderboard .list .list-item:nth-child(4) mark::after {
 /*  top: -7px; */
   bottom: auto;
   border-top: none;
   border-bottom: 6px solid #000000;
 }
 
-.leaderboard ol li:hover {
+.leaderboard .list .list-item:hover {
   z-index: 2;
   overflow: visible;
   transform: scaleX(1.05) scaleY(1.05);
