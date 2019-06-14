@@ -42,7 +42,10 @@ Body
 }
 
 #brocolitoImage {
-  position: fixed;
+  position: absolute;
+  top: 10%;
+  right: 20%;
+  width: 20vw;
 }
 
 
@@ -53,6 +56,17 @@ Body
   bottom: 15%;
 }
 
+#tutorial {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+}
+
+#donationText {
+  position: absolute;
+  bottom: 10%;
+  left: 40%;
+}
 
 
 /*--------------------
@@ -71,6 +85,7 @@ Leaderboard
   background: linear-gradient(to bottom, #0dad41, #086425);
   border-radius: 10px;
   box-shadow: 0 7px 30px rgba(62, 9, 11, 0.3);
+  height: 200px;
 }
 .leaderboard h1 {
   font-size: 18px;
@@ -95,6 +110,18 @@ Leaderboard
   flex-direction: row;
   justify-content: space-between;
   padding: 16px;
+}
+
+.index {
+  flex: 1;
+}
+
+.username {
+  flex: 5;
+}
+
+.maxpoints {
+  flex: 1;
 }
 
 
